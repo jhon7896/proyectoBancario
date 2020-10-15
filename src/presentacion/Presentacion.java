@@ -7,7 +7,7 @@ package presentacion;
 
 /**
  *
- * @author ZERO
+ * @author BIGZERO
  */
 public class Presentacion {
     public static void main(String[] args) {

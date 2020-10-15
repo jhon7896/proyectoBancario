@@ -5,11 +5,19 @@
  */
 package presentacion;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JComboBox;
 
 /**
  *
- * @author ZERO
+ * @author BIGZERO
  */
 public class Cliente {
 
@@ -36,6 +44,11 @@ public class Cliente {
         this.cliedireccion = cliedireccion;
         this.clietelefono = clietelefono;
         this.clieemail = clieemail;
+    }
+    
+    public Cliente(String cliecodigo, String clienombre) {
+        this.cliecodigo = cliecodigo;
+        this.clienombre = clienombre;
     }
 
     public String getCliecodigo() {
@@ -110,44 +123,6 @@ public class Cliente {
         this.clieemail = clieemail;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.cliecodigo);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Cliente other = (Cliente) obj;
-        if (!Objects.equals(this.cliecodigo, other.cliecodigo)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Cliente: " + 
-                "\nCodigo: " + cliecodigo + 
-                "\nApellido Paterno: " + cliepaterno + 
-                "\nApellido Materno: " + cliematerno + 
-                "\nNombres: " + clienombre + 
-                "\nDNI: " + cliedni + 
-                "\nCiudad: " + clieciudad + 
-                "\nDirección: " + cliedireccion + 
-                "\nTelefono: " + clietelefono + 
-                "\nEmail: " + clieemail;
-    }
     
 
 }

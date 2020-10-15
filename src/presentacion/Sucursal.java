@@ -1,17 +1,22 @@
-/*
-        sucucodigo       CHAR(3) NOT NULL,
-	sucunombre       VARCHAR(50) NOT NULL,
-	sucuciudad       VARCHAR(30) NOT NULL,
-	sucudireccion    VARCHAR(50) NULL,
-	sucucontcuenta   INTEGER NOT NULL,
- */
 package presentacion;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JComboBox;
 
 /**
  *
  * @author BIGZERO
  */
 public class Sucursal {
+    private Connection cnn = null;
+    private ResultSet rs = null;
+    private Statement st = null;
     private String sucucodigo;
     private String sucunombre;
     private String sucuciudad;
@@ -27,6 +32,11 @@ public class Sucursal {
         this.sucuciudad = sucuciudad;
         this.sucudireccion = sucudireccion;
         this.sucucontcuenta = sucucontcuenta;
+    }
+    
+    public Sucursal(String sucucodigo, String sucunombre) {
+        this.sucucodigo = sucucodigo;
+        this.sucunombre = sucunombre;
     }
 
     public String getSucucodigo() {
@@ -68,10 +78,25 @@ public class Sucursal {
     public void setSucucontcuenta(int sucucontcuenta) {
         this.sucucontcuenta = sucucontcuenta;
     }
+    
+    public void llenarComboSucursal(JComboBox<Sucursal> cboSucursal) {
+        PreparedStatement ps = null;
+        cnn = Conexion.getInstancia().miConexion();
+        try {
+            ps = cnn.prepareStatement("Select * from Sucursal");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                cboSucursal.addItem(new Sucursal(
+                        rs.getString("sucucodigo"), rs.getString("sucunombre")
+                ));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     @Override
     public String toString() {
-        return "Sucursal{" + "sucucodigo=" + sucucodigo + ", sucunombre=" + sucunombre + ", sucuciudad=" + sucuciudad + ", sucudireccion=" + sucudireccion + ", sucucontcuenta=" + sucucontcuenta + '}';
+        return sucunombre;
     }
-    
 }

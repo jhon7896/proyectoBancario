@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author ZERO
+ * @author BIGZERO
  */
 public class dlgClientes extends javax.swing.JDialog {
 
@@ -556,6 +556,7 @@ public class dlgClientes extends javax.swing.JDialog {
                     ClienteDAO.getInstancia().eliminar(codigo);
                     JOptionPane.showMessageDialog(this, "Registro eliminado");
                 }
+                generarCodigoCliente();
                 limpiarTextos();
             } else {
                 JOptionPane.showMessageDialog(null, "El codigo del cliente no existe");
@@ -636,8 +637,8 @@ public class dlgClientes extends javax.swing.JDialog {
 
     private void txtCiudadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCiudadKeyTyped
         // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if (!Character.isLetter(c) && !Character.isWhitespace(c) && !Character.isDigit(c)) {
+       char c = evt.getKeyChar();
+        if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
             evt.consume();
         }
     }//GEN-LAST:event_txtCiudadKeyTyped
@@ -698,6 +699,10 @@ public class dlgClientes extends javax.swing.JDialog {
 
     private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
         // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed

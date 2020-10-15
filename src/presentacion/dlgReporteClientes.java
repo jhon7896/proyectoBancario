@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author ZERO
+ * @author BIGZERO
  */
 public class dlgReporteClientes extends javax.swing.JDialog {
 

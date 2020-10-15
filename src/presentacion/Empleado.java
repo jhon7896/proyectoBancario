@@ -6,12 +6,23 @@
 package presentacion;
 
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JComboBox;
 /**
  *
- * @author ZERO
+ * @author BIGZERO
  */
 public class Empleado {
+    private Connection cnn = null;
+    private ResultSet rs = null;
+    private Statement st = null;
     private String emplcodigo;
     private String emplpaterno;
     private String emplmaterno;
@@ -33,6 +44,11 @@ public class Empleado {
         this.empldireccion = empldireccion;
         this.emplusuario = emplusuario;
         this.emplclave = emplclave;
+    }
+
+    public Empleado(String emplcodigo, String emplnombre) {
+        this.emplcodigo = emplcodigo;
+        this.emplnombre = emplnombre;
     }
 
     public String getEmplcodigo() {
@@ -124,9 +140,25 @@ public class Empleado {
         return true;
     }
 
+    public void llenarComboEmpleado(JComboBox<Empleado> cboEmpelado) {
+        PreparedStatement ps = null;
+        cnn = Conexion.getInstancia().miConexion();
+        try {
+            ps = cnn.prepareStatement("Select * from empleado");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                cboEmpelado.addItem(new Empleado(
+                        rs.getString("emplcodigo"), rs.getString("emplnombre")
+                ));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     @Override
     public String toString() {
-        return "Empleado{" + "emplcodigo=" + emplcodigo + ", emplpaterno=" + emplpaterno + ", emplmaterno=" + emplmaterno + ", emplnombre=" + emplnombre + ", emplciudad=" + emplciudad + ", empldireccion=" + empldireccion + ", emplusuario=" + emplusuario + ", emplclave=" + emplclave + '}';
+        return emplnombre;
     }
     
 }

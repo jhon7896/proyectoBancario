@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author ZERO
+ * @author BIGZERO
  */
 public class EmpleadoDAO {
     private Connection cnn = null;

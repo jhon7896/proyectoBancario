@@ -7,11 +7,13 @@ package presentacion;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author ZERO
+ * @author BIGZERO
  */
 public class dlgEmpleado extends javax.swing.JDialog {
 
@@ -29,13 +31,10 @@ public class dlgEmpleado extends javax.swing.JDialog {
     }
     
     void limpiarTextos() {
-        txtApellidosPaternos.setText("");
-        txtApellidosMaternos.setText("");
-        txtNombres.setText("");
+        txtNombre.setText("");
         txtCiudad.setText("");
         txtDireccion.setText("");
         txtUsuario.setText("");
-        txtClave.setText("");
         
     }
 
@@ -51,9 +50,9 @@ public class dlgEmpleado extends javax.swing.JDialog {
     }
 
     void textos(boolean sw) {
+        txtNombre.setEditable(sw);
         txtApellidosPaternos.setEditable(sw);
         txtApellidosMaternos.setEditable(sw);
-        txtNombres.setEditable(sw);
         txtCiudad.setEditable(sw);
         txtDireccion.setEditable(sw);
         txtUsuario.setEditable(sw);
@@ -64,14 +63,14 @@ public class dlgEmpleado extends javax.swing.JDialog {
     void generarCodigoEmpleado() throws SQLException {
         String serie = EmpleadoDAO.getInstancia().codigoEmpleado();
         if (serie == null) {
-            txtCodigo.setText("0001");
+            txtCodigo.setText("001");
         } else {
             int increment = Integer.parseInt(serie);
             increment = increment + 1;
-            if(txtCodigo.getText().compareTo("0009")==0){
-                txtCodigo.setText("000" + increment);
-            }else{
+            if(txtCodigo.getText().compareTo("009")==0){
                 txtCodigo.setText("00" + increment);
+            }else{
+                txtCodigo.setText("0" + increment);
             }
         }
     }
@@ -84,7 +83,7 @@ public class dlgEmpleado extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtNombres = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         txtApellidosPaternos = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         btnlimpiar = new javax.swing.JButton();
@@ -112,9 +111,9 @@ public class dlgEmpleado extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        txtNombres.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombresKeyTyped(evt);
+                txtNombreKeyTyped(evt);
             }
         });
 
@@ -301,7 +300,7 @@ public class dlgEmpleado extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3)
                         .addGap(24, 24, 24)
-                        .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
@@ -359,7 +358,7 @@ public class dlgEmpleado extends javax.swing.JDialog {
                         .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(11, 11, 11)
                         .addComponent(jLabel5))
@@ -411,21 +410,13 @@ public class dlgEmpleado extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNombresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyTyped
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
         if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
             evt.consume();
         }
-    }//GEN-LAST:event_txtNombresKeyTyped
-
-    private void txtApellidosPaternosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosPaternosKeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtApellidosPaternosKeyTyped
+    }//GEN-LAST:event_txtNombreKeyTyped
 
     private void btnlimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarActionPerformed
         // TODO add your handling code here:
@@ -433,21 +424,13 @@ public class dlgEmpleado extends javax.swing.JDialog {
         txtCodigo.requestFocus();
     }//GEN-LAST:event_btnlimpiarActionPerformed
 
-    private void txtApellidosMaternosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidosMaternosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtApellidosMaternosActionPerformed
-
-    private void txtApellidosMaternosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosMaternosKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtApellidosMaternosKeyTyped
-
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
         reg = true;
         textos(true);
         limpiarTextos();
         controles(false);
-        txtApellidosPaternos.requestFocus();
+        txtNombre.requestFocus();
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void txtDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionActionPerformed
@@ -462,39 +445,44 @@ public class dlgEmpleado extends javax.swing.JDialog {
         // TODO add your handling code here:
         String codigo, apellidosPaternos, apellidosMaternos, nombres, ciudad, direccion, usuario, contraseña;
         if (txtApellidosPaternos.getText().compareTo("") != 0 && txtApellidosMaternos.getText().compareTo("") != 0
-            && txtNombres.getText().compareTo("") != 0 && txtCiudad.getText().compareTo("") != 0 && txtDireccion.getText().compareTo("") != 0
+            && txtNombre.getText().compareTo("") != 0 && txtCiudad.getText().compareTo("") != 0 && txtDireccion.getText().compareTo("") != 0
             && txtUsuario.getText().compareTo("") != 0 && txtClave.getText().compareTo("") != 0) {
-            codigo = txtCodigo.getText();
-            apellidosPaternos = txtApellidosPaternos.getText();
-            apellidosMaternos = txtApellidosMaternos.getText();
-            nombres = txtNombres.getText();
-            ciudad = txtCiudad.getText();
-            direccion = txtDireccion.getText();
-            usuario = txtUsuario.getText();
-            contraseña = txtClave.getText();
-            if (reg) {
-                try {
-                    EmpleadoDAO.getInstancia().insertar(codigo, apellidosPaternos, apellidosMaternos, nombres,
-                        ciudad,direccion,usuario,contraseña);
-                    JOptionPane.showMessageDialog(null, "Dato registrado");
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage());
+            try {
+                codigo = txtCodigo.getText();
+                apellidosPaternos = txtApellidosPaternos.getText();
+                apellidosMaternos = txtApellidosMaternos.getText();
+                nombres = txtNombre.getText();
+                ciudad = txtCiudad.getText();
+                direccion = txtDireccion.getText();
+                usuario = txtUsuario.getText();
+                contraseña = txtClave.getText();
+                if (reg) {
+                    try {
+                        EmpleadoDAO.getInstancia().insertar(codigo, apellidosPaternos, apellidosMaternos, nombres,
+                                ciudad,direccion,usuario,contraseña);
+                        JOptionPane.showMessageDialog(null, "Dato registrado");
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(null, ex.getMessage());
+                    }
+                    
+                } else {
+                    try {
+                        EmpleadoDAO.getInstancia().actualizar(codigo, apellidosPaternos, apellidosMaternos, nombres,
+                                ciudad,direccion,usuario,contraseña);
+                        JOptionPane.showMessageDialog(null, "Dato modificado");
+                        btnRegistrar.setText("Registrar");
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(null, ex.getMessage());
+                    }
+                    
                 }
-
-            } else {
-                try {
-                    EmpleadoDAO.getInstancia().actualizar(codigo, apellidosPaternos, apellidosMaternos, nombres,
-                        ciudad,direccion,usuario,contraseña);
-                    JOptionPane.showMessageDialog(null, "Dato modificado");
-                    btnRegistrar.setText("Registrar");
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage());
-                }
-
+                generarCodigoEmpleado();
+                limpiarTextos();
+                textos(false);
+                controles(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(dlgEmpleado.class.getName()).log(Level.SEVERE, null, ex);
             }
-            limpiarTextos();
-            textos(false);
-            controles(true);
         } else {
             JOptionPane.showMessageDialog(null, "faltan llenar datos");
         }
@@ -512,7 +500,7 @@ public class dlgEmpleado extends javax.swing.JDialog {
                 txtCodigo.setText(x.getEmplcodigo());
                 txtApellidosPaternos.setText(x.getEmplpaterno());
                 txtApellidosMaternos.setText(x.getEmplmaterno());
-                txtNombres.setText(x.getEmplnombre());
+                txtNombre.setText(x.getEmplnombre());
                 txtCiudad.setText(x.getEmplciudad());
                 txtDireccion.setText(x.getEmpldireccion());
                 txtUsuario.setText(x.getEmplusuario());
@@ -531,6 +519,10 @@ public class dlgEmpleado extends javax.swing.JDialog {
 
     private void txtUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyTyped
         // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (Character.isWhitespace(c)) {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtUsuarioKeyTyped
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -546,7 +538,7 @@ public class dlgEmpleado extends javax.swing.JDialog {
                 txtCodigo.setText(x.getEmplcodigo());
                 txtApellidosPaternos.setText(x.getEmplpaterno());
                 txtApellidosMaternos.setText(x.getEmplmaterno());
-                txtNombres.setText(x.getEmplnombre());
+                txtNombre.setText(x.getEmplnombre());
                 txtCiudad.setText(x.getEmplciudad());
                 txtDireccion.setText(x.getEmpldireccion());
                 txtUsuario.setText(x.getEmplusuario());
@@ -556,6 +548,7 @@ public class dlgEmpleado extends javax.swing.JDialog {
                     EmpleadoDAO.getInstancia().eliminar(codigo);
                     JOptionPane.showMessageDialog(this, "Registro eliminado");
                 }
+                generarCodigoEmpleado();
                 limpiarTextos();
             } else {
                 JOptionPane.showMessageDialog(null, "El codigo del cliente no existe");
@@ -596,7 +589,7 @@ public class dlgEmpleado extends javax.swing.JDialog {
                 txtCodigo.setText(x.getEmplcodigo());
                 txtApellidosPaternos.setText(x.getEmplpaterno());
                 txtApellidosMaternos.setText(x.getEmplmaterno());
-                txtNombres.setText(x.getEmplnombre());
+                txtNombre.setText(x.getEmplnombre());
                 txtCiudad.setText(x.getEmplciudad());
                 txtDireccion.setText(x.getEmpldireccion());
                 txtUsuario.setText(x.getEmplusuario());
@@ -636,10 +629,30 @@ public class dlgEmpleado extends javax.swing.JDialog {
     private void txtCiudadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCiudadKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if (!Character.isLetter(c) && !Character.isWhitespace(c) && !Character.isDigit(c)) {
+        if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
             evt.consume();
         }
     }//GEN-LAST:event_txtCiudadKeyTyped
+
+    private void txtApellidosMaternosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosMaternosKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtApellidosMaternosKeyTyped
+
+    private void txtApellidosMaternosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidosMaternosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtApellidosMaternosActionPerformed
+
+    private void txtApellidosPaternosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosPaternosKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtApellidosPaternosKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btcancelar;
@@ -665,7 +678,7 @@ public class dlgEmpleado extends javax.swing.JDialog {
     private javax.swing.JPasswordField txtClave;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDireccion;
-    private javax.swing.JTextField txtNombres;
+    private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

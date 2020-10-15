@@ -7,7 +7,7 @@ package presentacion;
 import java.sql.*;
 /**
  *
- * @author Programador
+ * @author BIGZERO
  *
  */
 public class Conexion {

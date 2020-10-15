@@ -38,7 +38,6 @@ DROP TABLE IF EXISTS interesmensual;
 DROP TABLE IF EXISTS costomovimiento;
 DROP TABLE IF EXISTS cargomantenimiento;
 DROP TABLE IF EXISTS moneda;
-select * from costomovimiento;
 -- =============================================
 -- Creación de los Objetos de la Base de Datos
 -- =============================================
@@ -81,66 +80,6 @@ CREATE TABLE Empleado (
 		UNIQUE (emplusuario)
 ) ENGINE = INNODB ;
 
--- Procedimiento Crear Registro Empleado
-delimiter $
-CREATE PROCEDURE REGISTRAR_EMPLEADO(emplpaterno varchar(25), emplmaterno varchar(25), emplnombre varchar(30),
-emplciudad varchar(30),empldireccion varchar(50),emplusuario varchar(15),emplclave varchar(15))
-begin
-	declare maximo varchar(10);
-    declare num int;
-    declare codigo varchar(10);
-    
-	SET maximo = (SELECT MAX(emplcodigo) FROM Empleado);
-    SET num = (SELECT LTRIM(RIGHT(maximo,4)));
-    
-    IF num>=1 and num<=8 then
-		set num=num+1;
-        set codigo=(select concat('0000', CAST(num as char)));
-	ELSEIF num>=9 and num<=98 then
-		set num=num+1;
-        set codigo=(select concat('000', CAST(num as char)));
-	ELSEIF num>=98 and num<=998 then
-		set num=num+1;
-        set codigo=(select concat('00', CAST(num as char)));
-	ELSEIF num>=999 and num<=9999 then
-		set num=num+1;
-        set codigo=(select concat('0', CAST(num as char)));
-	ELSE
-		set codigo=(select '0001');
-	END IF;
-	INSERT INTO Empleado (emplcodigo,emplpaterno,emplmaterno,emplnombre,emplciudad,empldireccion,emplusuario,emplclave) value (codigo,emplpaterno,emplmaterno,emplnombre,emplciudad,empldireccion,emplusuario,emplclave);
-end $
-
--- Generar Codigo Empleado
-delimiter $
-CREATE PROCEDURE Generar_Codigo_Empleado()
-begin
-	select max(emplcodigo) from empleado;
-end $
-
--- Buscar Empleado
-delimiter $
-CREATE PROCEDURE Buscar_Empleado(IN codigo CHAR(5))
-begin
-	SELECT * FROM Empleado WHERE emplcodigo=codigo;
-end $
-
--- Actualizar Empleado
-delimiter $
-CREATE PROCEDURE Actualizar_Empleado(in paterno varchar(60), in materno varchar(60), in nombre varchar(60),
-in ciudad varchar(60), in direccion varchar(60), in usuario varchar(60), in contraseña varchar(60),IN codigo CHAR(5))
-begin
-	update empleado set emplpaterno=paterno, emplmaterno=materno, emplnombre=nombre, emplciudad=ciudad, empldireccion=direccion, emplusuario=usuario,
-    emplclave=codigo where emplcodigo=codigo;
-end $
-
--- Eliminar Empleado
-delimiter $
-CREATE PROCEDURE Eliminar_Empleado(IN codigo CHAR(5))
-begin
-	DELETE FROM Empleado WHERE emplcodigo=codigo;
-end $
-
 CREATE TABLE Asignado (
 	asigcodigo       CHAR(6) NOT NULL,
 	sucucodigo       CHAR(3) NOT NULL,
@@ -176,87 +115,6 @@ CREATE TABLE Cliente (
 	CONSTRAINT PK_Cliente 
 		PRIMARY KEY (cliecodigo)
 ) ENGINE = INNODB ;
-
--- Procedimiento Crear Registro Cliente
-delimiter $
-CREATE PROCEDURE REGISTRAR_CLIENTE(cliepaterno varchar(60), cliematerno varchar(60), clienombre varchar(60),
-cliedni varchar(60),clieciudad varchar(60),cliedireccion varchar(60),clietelefono varchar(60),clieemail varchar(60))
-begin
-	declare maximo varchar(10);
-    declare num int;
-    declare codigo varchar(10);
-    
-	SET maximo = (SELECT MAX(cliecodigo) FROM cliente);
-    SET num = (SELECT LTRIM(RIGHT(maximo,5)));
-    
-    IF num>=1 and num<=8 then
-		set num=num+1;
-        set codigo=(select concat('0000', CAST(num as char)));
-	ELSEIF num>=9 and num<=98 then
-		set num=num+1;
-        set codigo=(select concat('000', CAST(num as char)));
-	ELSEIF num>=98 and num<=998 then
-		set num=num+1;
-        set codigo=(select concat('00', CAST(num as char)));
-	ELSEIF num>=998 and num<=9998 then
-		set num=num+1;
-        set codigo=(select concat('0', CAST(num as char)));
-	ELSE
-		set codigo=(select '00001');
-	END IF;
-	INSERT INTO Cliente (cliecodigo,cliepaterno,cliematerno,clienombre,cliedni,clieciudad,cliedireccion,clietelefono,clieemail) value (codigo,cliepaterno,cliematerno,clienombre,cliedni,clieciudad,cliedireccion,clietelefono,clieemail);
-end $
-
--- Generar Codigo cliente
-delimiter $
-CREATE PROCEDURE Generar_Codigo_Cliente()
-begin
-	select max(cliecodigo) from cliente;
-end $
-
--- Buscar Cliente
-delimiter $
-CREATE PROCEDURE Buscar_Cliente(IN codigo CHAR(5))
-begin
-	SELECT * FROM Cliente WHERE cliecodigo=codigo;
-end $
-
--- Actualizar Cliente
-delimiter $
-CREATE PROCEDURE Actualizar_Cliente(in paterno varchar(60), in materno varchar(60), in nombre varchar(60),
-in dni varchar(60), in ciudad varchar(60), in direccion varchar(60), in telefono varchar(60), in email varchar(60),IN codigo CHAR(5))
-begin
-	update cliente set cliepaterno=paterno, cliematerno=materno, clienombre=nombre, cliedni=dni, clieciudad=ciudad, cliedireccion=direccion,
-    clietelefono=telefono, clieemail=email where cliecodigo=codigo;
-end $
-
--- Eliminar Cliente
-delimiter $
-CREATE PROCEDURE Eliminar_Cliente(IN codigo CHAR(5))
-begin
-	DELETE FROM Cliente WHERE cliecodigo=codigo;
-end $
-
--- Listar Cliente
-delimiter $
-CREATE PROCEDURE Mostrar_Cliente()
-begin
-	SELECT * FROM Cliente;
-end $
-
--- Listar Clientes ordenados por apellidos
-delimiter $
-CREATE procedure Mostrar_Clientes_Por_Apellidos()
-begin
-	SELECT * FROM cliente ORDER BY cliepaterno, cliematerno ASC;
-end $
-
--- Listar Clientes ordenados por DNI
-delimiter $
-CREATE procedure Mostrar_Clientes_Por_DNI()
-begin
-	SELECT * FROM cliente ORDER BY cliedni ASC;
-end $
 
 CREATE TABLE Moneda (
 	monecodigo       CHAR(2) NOT NULL,
@@ -396,3 +254,244 @@ CREATE TABLE Contador (
 	CONSTRAINT PK_Contador 
 		PRIMARY KEY (conttabla)
 ) ENGINE = INNODB ;
+
+-- Procedimiento Crear Registro Sucursal
+delimiter $
+CREATE PROCEDURE REGISTRAR_SUCURSAL(sucunombre varchar(50), sucuciudad varchar(30), sucudireccion varchar(50),
+sucucontcuenta int)
+begin
+	declare maximo varchar(10);
+    declare num int;
+    declare codigo varchar(10);
+    
+	SET maximo = (SELECT MAX(sucucodigo) FROM Sucursal);
+    SET num = (SELECT LTRIM(RIGHT(maximo,3)));
+    
+    IF num>=1 and num<=8 then
+		set num=num+1;
+        set codigo=(select concat('00', CAST(num as char)));
+	ELSEIF num>=9 and num<=98 then
+		set num=num+1;
+        set codigo=(select concat('0', CAST(num as char)));
+	ELSE
+		set codigo=(select '001');
+	END IF;
+	INSERT INTO Sucursal (sucucodigo,sucunombre,sucuciudad,sucudireccion,sucucontcuenta) value (codigo,sucunombre,sucuciudad,sucudireccion,sucucontcuenta);
+end $
+
+-- Generar Codigo Sucursal
+delimiter $
+CREATE PROCEDURE Generar_Codigo_Sucursal()
+begin
+	select max(sucucodigo) from sucursal;
+end $
+
+-- Buscar Sucursal
+delimiter $
+CREATE PROCEDURE Buscar_Sucursal(IN codigo CHAR(3))
+begin
+	SELECT * FROM Sucursal WHERE sucucodigo=codigo;
+end $
+
+-- Actualizar Sucursal
+delimiter $
+CREATE PROCEDURE Actualizar_Sucursal(in nombre varchar(50), in ciudad varchar(30), in direccion varchar(50),
+in contcuenta int, IN codigo CHAR(3))
+begin
+	update sucursal set sucunombre=nombre, sucuciudad=ciudad, sucudireccion=direccion, sucucontcuenta=contcuenta,
+    sucucodigo=codigo where sucucodigo=codigo;
+end $
+
+-- Eliminar Empleado
+delimiter $
+CREATE PROCEDURE Eliminar_Sucursal(IN codigo CHAR(3))
+begin
+	DELETE FROM Sucursal WHERE sucucodigo=codigo;
+end $
+
+-- Procedimiento Crear Registro Empleado
+delimiter $
+CREATE PROCEDURE REGISTRAR_EMPLEADO(emplpaterno varchar(25), emplmaterno varchar(25), emplnombre varchar(30),
+emplciudad varchar(30),empldireccion varchar(50),emplusuario varchar(15),emplclave varchar(15))
+begin
+	declare maximo varchar(10);
+    declare num int;
+    declare codigo varchar(10);
+    
+	SET maximo = (SELECT MAX(emplcodigo) FROM Empleado);
+    SET num = (SELECT LTRIM(RIGHT(maximo,4)));
+    
+    IF num>=1 and num<=8 then
+		set num=num+1;
+        set codigo=(select concat('0000', CAST(num as char)));
+	ELSEIF num>=9 and num<=98 then
+		set num=num+1;
+        set codigo=(select concat('000', CAST(num as char)));
+	ELSEIF num>=99 and num<=998 then
+		set num=num+1;
+        set codigo=(select concat('00', CAST(num as char)));
+	ELSEIF num>=999 and num<=9999 then
+		set num=num+1;
+        set codigo=(select concat('0', CAST(num as char)));
+	ELSE
+		set codigo=(select '0001');
+	END IF;
+	INSERT INTO Empleado (emplcodigo,emplpaterno,emplmaterno,emplnombre,emplciudad,empldireccion,emplusuario,emplclave) value (codigo,emplpaterno,emplmaterno,emplnombre,emplciudad,empldireccion,emplusuario,emplclave);
+end $
+
+-- Generar Codigo Empleado
+delimiter $
+CREATE PROCEDURE Generar_Codigo_Empleado()
+begin
+	select max(emplcodigo) from empleado;
+end $
+
+-- Buscar Empleado
+delimiter $
+CREATE PROCEDURE Buscar_Empleado(IN codigo CHAR(4))
+begin
+	SELECT * FROM Empleado WHERE emplcodigo=codigo;
+end $
+
+-- Actualizar Empleado
+delimiter $
+CREATE PROCEDURE Actualizar_Empleado(in paterno varchar(25), in materno varchar(25), in nombre varchar(30),
+in ciudad varchar(30), in direccion varchar(50), in usuario varchar(10), in contraseña varchar(15),IN codigo CHAR(4))
+begin
+	update empleado set emplpaterno=paterno, emplmaterno=materno, emplnombre=nombre, emplciudad=ciudad, empldireccion=direccion, emplusuario=usuario,
+    emplclave=codigo where emplcodigo=codigo;
+end $
+
+-- Eliminar Empleado
+delimiter $
+CREATE PROCEDURE Eliminar_Empleado(IN codigo CHAR(4))
+begin
+	DELETE FROM Empleado WHERE emplcodigo=codigo;
+end $
+select * from Asignado;
+-- Procedimiento Crear Registro Asignado
+delimiter $
+CREATE PROCEDURE REGISTRAR_ASIGNADO(sucucodigo char(3), emplcodigo char(4), asigfechaalta DATE,asigfechabaja date)
+begin
+	declare maximo varchar(10);
+    declare num int;
+    declare codigo varchar(10);
+    
+	SET maximo = (SELECT MAX(asigcodigo) FROM Asignado);
+    SET num = (SELECT LTRIM(RIGHT(maximo,6)));
+    
+    IF num>=1 and num<=8 then
+		set num=num+1;
+        set codigo=(select concat('00000', CAST(num as char)));
+	ELSEIF num>=9 and num<=98 then
+		set num=num+1;
+        set codigo=(select concat('0000', CAST(num as char)));
+	ELSEIF num>=99 and num<=998 then
+		set num=num+1;
+        set codigo=(select concat('000', CAST(num as char)));
+	ELSEIF num>=999 and num<=9998 then
+		set num=num+1;
+        set codigo=(select concat('00', CAST(num as char)));
+        ELSEIF num>=9999 and num<=99999 then
+		set num=num+1;
+        set codigo=(select concat('0', CAST(num as char)));
+	ELSE
+		set codigo=(select '000001');
+	END IF;
+	INSERT INTO Asignado (asigcodigo,sucucodigo,emplcodigo,asigfechaalta,asigfechabaja) value (codigo,sucucodigo,emplcodigo,asigfechaalta,asigfechabaja);
+end $
+
+-- Generar Codigo Asignado
+delimiter $
+CREATE PROCEDURE Generar_Codigo_Asignado()
+begin
+	select max(asigcodigo) from asignado;
+end $
+
+-- Actualizar Asignado
+delimiter $
+CREATE PROCEDURE Actualizar_Asignado(IN fechaalta date, IN infechabaja date, IN codigo CHAR(6))
+begin
+	update asignado set asigfechaalta=fechaalta, asigfechabaja=fechabaja where asigcodigo=codigo;
+end $
+
+-- Procedimiento Crear Registro Cliente
+delimiter $
+CREATE PROCEDURE REGISTRAR_CLIENTE(cliepaterno varchar(60), cliematerno varchar(60), clienombre varchar(60),
+cliedni varchar(60),clieciudad varchar(60),cliedireccion varchar(60),clietelefono varchar(60),clieemail varchar(60))
+begin
+	declare maximo varchar(10);
+    declare num int;
+    declare codigo varchar(10);
+    
+	SET maximo = (SELECT MAX(cliecodigo) FROM cliente);
+    SET num = (SELECT LTRIM(RIGHT(maximo,5)));
+    
+    IF num>=1 and num<=8 then
+		set num=num+1;
+        set codigo=(select concat('0000', CAST(num as char)));
+	ELSEIF num>=9 and num<=98 then
+		set num=num+1;
+        set codigo=(select concat('000', CAST(num as char)));
+	ELSEIF num>=99 and num<=998 then
+		set num=num+1;
+        set codigo=(select concat('00', CAST(num as char)));
+	ELSEIF num>=999 and num<=9998 then
+		set num=num+1;
+        set codigo=(select concat('0', CAST(num as char)));
+	ELSE
+		set codigo=(select '00001');
+	END IF;
+	INSERT INTO Cliente (cliecodigo,cliepaterno,cliematerno,clienombre,cliedni,clieciudad,cliedireccion,clietelefono,clieemail) value (codigo,cliepaterno,cliematerno,clienombre,cliedni,clieciudad,cliedireccion,clietelefono,clieemail);
+end $
+
+-- Generar Codigo cliente
+delimiter $
+CREATE PROCEDURE Generar_Codigo_Cliente()
+begin
+	select max(cliecodigo) from cliente;
+end $
+
+-- Buscar Cliente
+delimiter $
+CREATE PROCEDURE Buscar_Cliente(IN codigo CHAR(5))
+begin
+	SELECT * FROM Cliente WHERE cliecodigo=codigo;
+end $
+
+-- Actualizar Cliente
+delimiter $
+CREATE PROCEDURE Actualizar_Cliente(in paterno varchar(60), in materno varchar(60), in nombre varchar(60),
+in dni varchar(60), in ciudad varchar(60), in direccion varchar(60), in telefono varchar(60), in email varchar(60),IN codigo CHAR(5))
+begin
+	update cliente set cliepaterno=paterno, cliematerno=materno, clienombre=nombre, cliedni=dni, clieciudad=ciudad, cliedireccion=direccion,
+    clietelefono=telefono, clieemail=email where cliecodigo=codigo;
+end $
+
+-- Eliminar Cliente
+delimiter $
+CREATE PROCEDURE Eliminar_Cliente(IN codigo CHAR(5))
+begin
+	DELETE FROM Cliente WHERE cliecodigo=codigo;
+end $
+
+-- Listar Cliente
+delimiter $
+CREATE PROCEDURE Mostrar_Cliente()
+begin
+	SELECT * FROM Cliente;
+end $
+
+-- Listar Clientes ordenados por apellidos
+delimiter $
+CREATE procedure Mostrar_Clientes_Por_Apellidos()
+begin
+	SELECT * FROM cliente ORDER BY cliepaterno, cliematerno ASC;
+end $
+
+-- Listar Clientes ordenados por DNI
+delimiter $
+CREATE procedure Mostrar_Clientes_Por_DNI()
+begin
+	SELECT * FROM cliente ORDER BY cliedni ASC;
+end $
