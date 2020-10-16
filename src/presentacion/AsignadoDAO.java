@@ -89,32 +89,6 @@ public class AsignadoDAO {
         }
     }
     
-//    public void actualizar(String asigcodigo, String sucucodigo, String emplcodigo,
-//            String asigfechaalta, String asigfechabaja) throws SQLException {
-//        cnn = Conexion.getInstancia().miConexion();
-//        PreparedStatement ps=null;
-//        try {
-//            ps = cnn.prepareStatement("UPDATE asignado " +
-//                    "SET sucucodigo = ?, " +
-//                    "emplcodigo = ?, " +
-//                    "asigfechaalta = ?, " +
-//                    "asigfechabaja = ? " +
-//                    "WHERE asigcodigo=?");
-//            ps.setString(5, asigcodigo);
-//            ps.setString(1, sucucodigo);
-//            ps.setString(2, emplcodigo);
-//            ps.setString(3, asigfechaalta);
-//            ps.setString(4, asigfechabaja);
-//
-//            ps.executeUpdate();
-//        } catch (SQLException ex) {
-//            System.out.println("ERROR: " + ex.getMessage());
-//        } finally {
-//            cnn.close();
-//            ps.close();
-//        }
-//    }
-    
     public Asignado buscarAsignado(String asigcodigo) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps=null;

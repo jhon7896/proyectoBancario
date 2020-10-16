@@ -415,6 +415,7 @@ public class dlgEmpleado extends javax.swing.JDialog {
         char c = evt.getKeyChar();
         if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
             evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Ingresar solo letras");
         }
     }//GEN-LAST:event_txtNombreKeyTyped
 
@@ -439,6 +440,7 @@ public class dlgEmpleado extends javax.swing.JDialog {
 
     private void txtDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyTyped
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtDireccionKeyTyped
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
@@ -522,6 +524,7 @@ public class dlgEmpleado extends javax.swing.JDialog {
         char c = evt.getKeyChar();
         if (Character.isWhitespace(c)) {
             evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "No se permiten espacios");
         }
     }//GEN-LAST:event_txtUsuarioKeyTyped
 
@@ -631,6 +634,7 @@ public class dlgEmpleado extends javax.swing.JDialog {
         char c = evt.getKeyChar();
         if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
             evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "ingresar solo letras");
         }
     }//GEN-LAST:event_txtCiudadKeyTyped
 
@@ -639,11 +643,13 @@ public class dlgEmpleado extends javax.swing.JDialog {
         char c = evt.getKeyChar();
         if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
             evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "ingresar solo letras");
         }
     }//GEN-LAST:event_txtApellidosMaternosKeyTyped
 
     private void txtApellidosMaternosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidosMaternosActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtApellidosMaternosActionPerformed
 
     private void txtApellidosPaternosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosPaternosKeyTyped
@@ -651,6 +657,7 @@ public class dlgEmpleado extends javax.swing.JDialog {
         char c = evt.getKeyChar();
         if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
             evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "ingresar solo letras");
         }
     }//GEN-LAST:event_txtApellidosPaternosKeyTyped
 

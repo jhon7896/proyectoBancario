@@ -41,14 +41,14 @@ public class dlgClientes extends javax.swing.JDialog {
         } else {
             int increment = Integer.parseInt(serie);
             increment = increment + 1;
-            if(txtCodigo.getText().compareTo("00009")==0){
+            if (txtCodigo.getText().compareTo("00009") == 0) {
                 txtCodigo.setText("0000" + increment);
-            }else{
+            } else {
                 txtCodigo.setText("000" + increment);
             }
         }
     }
-    
+
     void limpiarTextos() {
         txtApellidosPaternos.setText("");
         txtApellidosMaternos.setText("");
@@ -58,7 +58,7 @@ public class dlgClientes extends javax.swing.JDialog {
         txtDireccion.setText("");
         txtTelefono.setText("");
         txtEmail.setText("");
-        
+
     }
 
     void controles(boolean sw) {
@@ -461,7 +461,7 @@ public class dlgClientes extends javax.swing.JDialog {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         // TODO add your handling code here:
         String codigo, apellidosPaternos, apellidosMaternos, nombres, dni, ciudad, direccion, telefono, email;
-        if (txtDNI.getText().compareTo("") != 0 && txtApellidosPaternos.getText().compareTo("") != 0 && txtApellidosMaternos.getText().compareTo("") != 0 
+        if (txtDNI.getText().compareTo("") != 0 && txtApellidosPaternos.getText().compareTo("") != 0 && txtApellidosMaternos.getText().compareTo("") != 0
                 && txtNombres.getText().compareTo("") != 0 && txtCiudad.getText().compareTo("") != 0 && txtDireccion.getText().compareTo("") != 0
                 && txtTelefono.getText().compareTo("") != 0 && txtEmail.getText().compareTo("") != 0) {
             try {
@@ -477,22 +477,22 @@ public class dlgClientes extends javax.swing.JDialog {
                 if (reg) {
                     try {
                         ClienteDAO.getInstancia().insertar(codigo, apellidosPaternos, apellidosMaternos, nombres,
-                                dni,ciudad,direccion,telefono,email);
+                                dni, ciudad, direccion, telefono, email);
                         JOptionPane.showMessageDialog(null, "Dato registrado");
                     } catch (SQLException ex) {
                         JOptionPane.showMessageDialog(null, ex.getMessage());
                     }
-                    
+
                 } else {
                     try {
                         ClienteDAO.getInstancia().actualizar(codigo, apellidosPaternos, apellidosMaternos, nombres,
-                                dni,ciudad,direccion,telefono,email);
+                                dni, ciudad, direccion, telefono, email);
                         JOptionPane.showMessageDialog(null, "Dato modificado");
                         btnRegistrar.setText("Registrar");
                     } catch (SQLException ex) {
                         JOptionPane.showMessageDialog(null, ex.getMessage());
                     }
-                    
+
                 }
                 limpiarTextos();
                 generarCodigoCliente();
@@ -637,9 +637,10 @@ public class dlgClientes extends javax.swing.JDialog {
 
     private void txtCiudadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCiudadKeyTyped
         // TODO add your handling code here:
-       char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
         if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
             evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Ingresar solo letras");
         }
     }//GEN-LAST:event_txtCiudadKeyTyped
 
@@ -649,9 +650,15 @@ public class dlgClientes extends javax.swing.JDialog {
 
     private void txtDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIKeyTyped
         // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if (!Character.isDigit(c)) {
-            evt.consume();
+        if (txtDNI.getText().length() <= 8 ) {
+            char c = evt.getKeyChar();
+            if (!Character.isDigit(c)) {
+                evt.consume();
+                JOptionPane.showMessageDialog(rootPane, "Ingresar solo numeros");
+
+            }
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Límite de ingreso: solo 8 digitos");
         }
     }//GEN-LAST:event_txtDNIKeyTyped
 
@@ -660,6 +667,7 @@ public class dlgClientes extends javax.swing.JDialog {
         char c = evt.getKeyChar();
         if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
             evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Ingresar solo letras");
         }
     }//GEN-LAST:event_txtNombresKeyTyped
 
@@ -668,6 +676,7 @@ public class dlgClientes extends javax.swing.JDialog {
         char c = evt.getKeyChar();
         if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
             evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Ingresar solo letras");
         }
     }//GEN-LAST:event_txtApellidosPaternosKeyTyped
 
@@ -683,6 +692,11 @@ public class dlgClientes extends javax.swing.JDialog {
 
     private void txtApellidosMaternosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosMaternosKeyTyped
         // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Ingresar solo letras");
+        }
     }//GEN-LAST:event_txtApellidosMaternosKeyTyped
 
     private void txtDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionActionPerformed
@@ -702,6 +716,7 @@ public class dlgClientes extends javax.swing.JDialog {
         char c = evt.getKeyChar();
         if (!Character.isDigit(c)) {
             evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Ingresar solo numeros");
         }
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
@@ -711,6 +726,11 @@ public class dlgClientes extends javax.swing.JDialog {
 
     private void txtEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyTyped
         // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (Character.isWhitespace(c)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "No se permiten espacios");
+        }
     }//GEN-LAST:event_txtEmailKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

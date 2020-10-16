@@ -20,7 +20,8 @@ import javax.swing.JComboBox;
  * @author BIGZERO
  */
 public class Cliente {
-
+    private Connection cnn = null;
+    private ResultSet rs = null;
     private String cliecodigo;
     private String cliepaterno;
     private String cliematerno;
@@ -45,12 +46,14 @@ public class Cliente {
         this.clietelefono = clietelefono;
         this.clieemail = clieemail;
     }
-    
-    public Cliente(String cliecodigo, String clienombre) {
+
+    public Cliente(String cliecodigo, String cliepaterno, String cliematerno, String clienombre) {
         this.cliecodigo = cliecodigo;
+        this.cliepaterno = cliepaterno;
+        this.cliematerno = cliematerno;
         this.clienombre = clienombre;
     }
-
+    
     public String getCliecodigo() {
         return cliecodigo;
     }
@@ -123,6 +126,26 @@ public class Cliente {
         this.clieemail = clieemail;
     }
 
-    
+    public void llenarComboCliente(JComboBox<Cliente> cboCliente) {
+        PreparedStatement ps = null;
+        cnn = Conexion.getInstancia().miConexion();
+        try {
+            ps = cnn.prepareStatement("Select * from cliente");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                cboCliente.addItem(new Cliente(
+                        rs.getString("cliecodigo"), rs.getString("clienombre"),
+                        rs.getString("cliepaterno"), rs.getString("cliematerno")
+                ));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return cliepaterno + " " + cliematerno + " " + clienombre;
+    }
 
 }

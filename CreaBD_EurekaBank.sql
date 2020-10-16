@@ -122,7 +122,7 @@ CREATE TABLE Moneda (
 	CONSTRAINT PK_Moneda 
 		PRIMARY KEY (monecodigo)
 ) ENGINE = INNODB ;
-
+select * from Cuenta;
 CREATE TABLE Cuenta (
 	cuencodigo       CHAR(8) NOT NULL,
 	monecodigo       CHAR(2) NOT NULL,
@@ -494,4 +494,50 @@ delimiter $
 CREATE procedure Mostrar_Clientes_Por_DNI()
 begin
 	SELECT * FROM cliente ORDER BY cliedni ASC;
+end $
+select * from Cuenta;
+-- Procedimiento Crear Registro Cuenta
+delimiter $
+CREATE PROCEDURE REGISTRAR_CUENTA(monecodigo char(2), sucucodigo char(3), emplcreacuenta char(4),
+cliecodigo char(5),cuensaldo decimal(12,2),cuenfechacreacion date,cuenestado varchar(15),cuencontmov int, cuenclave char(6))
+begin
+	declare maximo varchar(8);
+    declare num int;
+    declare codigo varchar(8);
+    
+	SET maximo = (SELECT MAX(cuencodigo) FROM cuenta);
+    SET num = (SELECT LTRIM(RIGHT(maximo,8)));
+    
+    IF num>=1 and num<=8 then
+		set num=num+1;
+        set codigo=(select concat('0002000', CAST(num as char)));
+	ELSEIF num>=9 and num<=98 then
+		set num=num+1;
+        set codigo=(select concat('000200', CAST(num as char)));
+	ELSEIF num>=99 and num<=998 then
+		set num=num+1;
+        set codigo=(select concat('00020', CAST(num as char)));
+	ELSEIF num>=999 and num<=9998 then
+		set num=num+1;
+        set codigo=(select concat('0002', CAST(num as char)));
+	ELSE
+		set codigo=(select '00200004');
+	END IF;
+	INSERT INTO Cuenta (cuencodigo,monecodigo,sucucodigo,emplcreacuenta,cliecodigo,cuensaldo,cuenfechacreacion,cuenestado,cuencontmov,cuenclave) value (codigo,monecodigo,sucucodigo,emplcreacuenta,cliecodigo,cuensaldo,cuenfechacreacion,cuenestado,cuencontmov,cuenclave);
+end $
+
+-- Generar Codigo Cuenta
+delimiter $
+CREATE PROCEDURE Generar_Codigo_Cuenta()
+begin
+	select max(cuencodigo) from Cuenta;
+end $
+
+-- Actualizar Cuenta
+delimiter $
+CREATE PROCEDURE Actualizar_Cuenta(in moncodigo char(2), in succodigo char(3),
+in empcreacuenta char(4), in clicodigo char(5), in saldo float, in fecha date, in estado varchar(15),IN contmov int,in clave char(6),IN codigo CHAR(8))
+begin
+	update Cuenta set monecodigo=moncodigo, sucucodigo=succodigo, emplcreacuenta=empcreacuenta, cliecodigo=clicodigo, cuensaldo=saldo, cuenfechacreacion=fecha,
+    cuenestado=estado, cuencontmov=contmov, cuenclave=clave where cuencodigo=codigo;
 end $

@@ -22,7 +22,6 @@ import javax.swing.JComboBox;
 public class Empleado {
     private Connection cnn = null;
     private ResultSet rs = null;
-    private Statement st = null;
     private String emplcodigo;
     private String emplpaterno;
     private String emplmaterno;
@@ -46,10 +45,14 @@ public class Empleado {
         this.emplclave = emplclave;
     }
 
-    public Empleado(String emplcodigo, String emplnombre) {
+    public Empleado(String emplcodigo, String emplpaterno, String emplmaterno, String emplnombre) {
         this.emplcodigo = emplcodigo;
+        this.emplpaterno = emplpaterno;
+        this.emplmaterno = emplmaterno;
         this.emplnombre = emplnombre;
     }
+    
+    
 
     public String getEmplcodigo() {
         return emplcodigo;
@@ -148,7 +151,8 @@ public class Empleado {
             rs = ps.executeQuery();
             while (rs.next()) {
                 cboEmpelado.addItem(new Empleado(
-                        rs.getString("emplcodigo"), rs.getString("emplnombre")
+                        rs.getString("emplcodigo"), rs.getString("emplnombre"),
+                        rs.getString("emplpaterno"),rs.getString("emplmaterno")
                 ));
             }
         } catch (SQLException ex) {
@@ -158,7 +162,7 @@ public class Empleado {
 
     @Override
     public String toString() {
-        return emplnombre;
+        return emplpaterno + " " + emplmaterno + " " + emplnombre;
     }
     
 }
