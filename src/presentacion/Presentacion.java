@@ -5,6 +5,8 @@
  */
 package presentacion;
 
+import formularios.FrmPrincipal;
+
 /**
  *
  * @author BIGZERO

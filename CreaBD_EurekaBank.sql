@@ -255,6 +255,9 @@ CREATE TABLE Contador (
 		PRIMARY KEY (conttabla)
 ) ENGINE = INNODB ;
 
+
+
+
 -- Procedimiento Crear Registro Sucursal
 delimiter $
 CREATE PROCEDURE REGISTRAR_SUCURSAL(sucunombre varchar(50), sucuciudad varchar(30), sucudireccion varchar(50),
@@ -308,6 +311,12 @@ CREATE PROCEDURE Eliminar_Sucursal(IN codigo CHAR(3))
 begin
 	DELETE FROM Sucursal WHERE sucucodigo=codigo;
 end $
+
+
+
+
+
+
 
 -- Procedimiento Crear Registro Empleado
 delimiter $
@@ -368,7 +377,11 @@ CREATE PROCEDURE Eliminar_Empleado(IN codigo CHAR(4))
 begin
 	DELETE FROM Empleado WHERE emplcodigo=codigo;
 end $
-select * from Asignado;
+
+
+
+
+
 -- Procedimiento Crear Registro Asignado
 delimiter $
 CREATE PROCEDURE REGISTRAR_ASIGNADO(sucucodigo char(3), emplcodigo char(4), asigfechaalta DATE,asigfechabaja date)
@@ -414,6 +427,11 @@ CREATE PROCEDURE Actualizar_Asignado(IN succodigo char(3), IN empcodigo char(4),
 begin
 	update asignado set asigfechaalta=fechaalta, asigfechabaja=fechabaja, sucucodigo=succodigo, emplcodigo=empcodigo where asigcodigo=codigo;
 end $
+
+
+
+
+
 
 -- Procedimiento Crear Registro Cliente
 delimiter $
@@ -495,7 +513,12 @@ CREATE procedure Mostrar_Clientes_Por_DNI()
 begin
 	SELECT * FROM cliente ORDER BY cliedni ASC;
 end $
-select * from Cuenta;
+
+
+
+
+
+
 -- Procedimiento Crear Registro Cuenta
 delimiter $
 CREATE PROCEDURE REGISTRAR_CUENTA(monecodigo char(2), sucucodigo char(3), emplcreacuenta char(4),
