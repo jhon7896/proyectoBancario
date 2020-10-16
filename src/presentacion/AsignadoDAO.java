@@ -73,7 +73,7 @@ public class AsignadoDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call Actualizar_Asignado(?,?,?)");
+            ps = cnn.prepareStatement("call Actualizar_Asignado(?,?,?,?,?)");
             ps.setString(5, asigcodigo);
             ps.setString(1, sucucodigo);
             ps.setString(2, emplcodigo);

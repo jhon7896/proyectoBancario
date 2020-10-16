@@ -63,14 +63,14 @@ public class dlgEmpleado extends javax.swing.JDialog {
     void generarCodigoEmpleado() throws SQLException {
         String serie = EmpleadoDAO.getInstancia().codigoEmpleado();
         if (serie == null) {
-            txtCodigo.setText("001");
+            txtCodigo.setText("0001");
         } else {
             int increment = Integer.parseInt(serie);
             increment = increment + 1;
-            if(txtCodigo.getText().compareTo("009")==0){
-                txtCodigo.setText("00" + increment);
+            if(txtCodigo.getText().compareTo("0009")==0){
+                txtCodigo.setText("000" + increment);
             }else{
-                txtCodigo.setText("0" + increment);
+                txtCodigo.setText("00" + increment);
             }
         }
     }
@@ -415,7 +415,6 @@ public class dlgEmpleado extends javax.swing.JDialog {
         char c = evt.getKeyChar();
         if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "Ingresar solo letras");
         }
     }//GEN-LAST:event_txtNombreKeyTyped
 
@@ -634,7 +633,6 @@ public class dlgEmpleado extends javax.swing.JDialog {
         char c = evt.getKeyChar();
         if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "ingresar solo letras");
         }
     }//GEN-LAST:event_txtCiudadKeyTyped
 
@@ -643,7 +641,6 @@ public class dlgEmpleado extends javax.swing.JDialog {
         char c = evt.getKeyChar();
         if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "ingresar solo letras");
         }
     }//GEN-LAST:event_txtApellidosMaternosKeyTyped
 
@@ -657,7 +654,6 @@ public class dlgEmpleado extends javax.swing.JDialog {
         char c = evt.getKeyChar();
         if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "ingresar solo letras");
         }
     }//GEN-LAST:event_txtApellidosPaternosKeyTyped
 

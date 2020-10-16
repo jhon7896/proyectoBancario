@@ -17,14 +17,14 @@ import javax.swing.JOptionPane;
  *
  * @author BIGZERO
  */
-public class dlgAsignado extends javax.swing.JDialog {
+public final class dlgAsignado extends javax.swing.JDialog {
 
     boolean reg;
     int pmod;
     private Connection cnn = null;
     Empleado empleado = new Empleado();
     Sucursal sucursal = new Sucursal();
-    String fecha;
+    String fechaAlta;
     String fechaBaja;
     String codigoAsignado, codigoSucursal, codigoEmpleado;
 
@@ -36,6 +36,10 @@ public class dlgAsignado extends javax.swing.JDialog {
         empleado.llenarComboEmpleado(cboEmpleado);
         sucursal.llenarComboSucursal(cboSucursal);
         generarCodigoAsignado();
+        lblEmpleado.setVisible(false);
+        lblSucursal.setVisible(false);
+        txtSucursal.setVisible(false);
+        txtEmpleado.setVisible(false);
     }
 
     void generarCodigoAsignado() throws SQLException {
@@ -56,6 +60,8 @@ public class dlgAsignado extends javax.swing.JDialog {
     void limpiarTextos() {
         txtFechaIngreso.setText("");
         txtFechaBaja.setText("");
+        txtEmpleado.setText("");
+        txtSucursal.setText("");
     }
 
     void controles(boolean sw) {
@@ -71,6 +77,8 @@ public class dlgAsignado extends javax.swing.JDialog {
 
     void textos(boolean sw) {
         txtFechaBaja.setEditable(sw);
+        txtSucursal.setEditable(sw);
+        txtEmpleado.setEditable(sw);
     }
 
     /**
@@ -84,9 +92,9 @@ public class dlgAsignado extends javax.swing.JDialog {
 
         jLabel2 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        lblSucursal1 = new javax.swing.JLabel();
         cboSucursal = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
+        lblEmpleado1 = new javax.swing.JLabel();
         cboEmpleado = new javax.swing.JComboBox<>();
         txtFechaIngreso = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -101,6 +109,10 @@ public class dlgAsignado extends javax.swing.JDialog {
         btnSalir = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btcancelar = new javax.swing.JButton();
+        lblSucursal = new javax.swing.JLabel();
+        txtSucursal = new javax.swing.JTextField();
+        lblEmpleado = new javax.swing.JLabel();
+        txtEmpleado = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -108,9 +120,9 @@ public class dlgAsignado extends javax.swing.JDialog {
 
         txtCodigo.setEditable(false);
 
-        jLabel1.setText("Sucursal");
+        lblSucursal1.setText("Sucursal");
 
-        jLabel3.setText("Empleado");
+        lblEmpleado1.setText("Empleado");
 
         txtFechaIngreso.setEditable(false);
 
@@ -138,7 +150,7 @@ public class dlgAsignado extends javax.swing.JDialog {
             }
         });
 
-        btnRegistrar.setText("Dar alta");
+        btnRegistrar.setText("Registrar");
         btnRegistrar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnRegistrar.setContentAreaFilled(false);
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -188,7 +200,7 @@ public class dlgAsignado extends javax.swing.JDialog {
             }
         });
 
-        btnModificar.setText("Baja");
+        btnModificar.setText("Modificar");
         btnModificar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnModificar.setContentAreaFilled(false);
         btnModificar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -211,63 +223,78 @@ public class dlgAsignado extends javax.swing.JDialog {
             }
         });
 
+        lblSucursal.setText("Sucursal");
+
+        txtSucursal.setEditable(false);
+
+        lblEmpleado.setText("Empleado");
+
+        txtEmpleado.setEditable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(76, 76, 76)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtFechaIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(63, 63, 63)
+                        .addGap(76, 76, 76)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(cboSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtFechaIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(63, 63, 63)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtFechaBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lblSucursal)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(29, 29, 29)
+                                        .addComponent(lblEmpleado)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblSucursal1)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cboSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(42, 42, 42)
+                                        .addComponent(lblEmpleado1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cboEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtFechaBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGap(93, 93, 93)
+                                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(cboEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(138, 138, 138))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(298, 298, 298)
-                        .addComponent(btnlimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21)
-                        .addComponent(btcancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addGap(65, 65, 65)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(298, 298, 298)
+                                .addComponent(btnlimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(21, 21, 21)
+                                .addComponent(btcancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,17 +303,21 @@ public class dlgAsignado extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
+                    .addComponent(lblSucursal1)
                     .addComponent(cboSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
+                    .addComponent(lblEmpleado1)
                     .addComponent(cboEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtFechaIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(txtFechaBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(64, 64, 64)
+                    .addComponent(txtFechaBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEmpleado)
+                    .addComponent(txtEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSucursal)
+                    .addComponent(txtSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnlimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btcancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -299,7 +330,7 @@ public class dlgAsignado extends javax.swing.JDialog {
                     .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
 
         pack();
@@ -315,25 +346,27 @@ public class dlgAsignado extends javax.swing.JDialog {
         // TODO add your handling code here:
         reg = true;
         controles(false);
-        fecha = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-        txtFechaIngreso.setText(fecha);
+        fechaAlta = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        txtFechaIngreso.setText(fechaAlta);
         txtFechaIngreso.requestFocus();
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         // TODO add your handling code here:
-        
+        String codigoSucursalModificado, codigoEmpleadoModificado;
         if (txtFechaIngreso.getText().compareTo("") != 0) {
             try {
 
                 codigoAsignado = txtCodigo.getText();
                 codigoSucursal = cboSucursal.getItemAt(cboSucursal.getSelectedIndex()).getSucucodigo();
                 codigoEmpleado = cboEmpleado.getItemAt(cboEmpleado.getSelectedIndex()).getEmplcodigo();
+                codigoSucursalModificado = txtSucursal.getText();
+                codigoEmpleadoModificado = txtEmpleado.getText();
                 
                 
                 if (reg) {
                     try {
-                        AsignadoDAO.getInstancia().insertar(codigoAsignado, codigoSucursal, codigoEmpleado, fecha, null);
+                        AsignadoDAO.getInstancia().insertar(codigoAsignado, codigoSucursal, codigoEmpleado, fechaAlta, null);
                         JOptionPane.showMessageDialog(null, "Dato registrado");
                         generarCodigoAsignado();
                     } catch (SQLException ex) {
@@ -342,9 +375,9 @@ public class dlgAsignado extends javax.swing.JDialog {
 
                 } else {
                     try {
-                        AsignadoDAO.getInstancia().actualizar(codigoAsignado, codigoSucursal, codigoEmpleado, fecha, fechaBaja);
+                        AsignadoDAO.getInstancia().actualizar(codigoAsignado, codigoSucursalModificado, codigoEmpleadoModificado, fechaAlta, fechaBaja);
                         JOptionPane.showMessageDialog(null, "Dato modificado");
-                        btnRegistrar.setText("Dar baja");
+                        btnRegistrar.setText("Modificar");
                     } catch (SQLException ex) {
                         JOptionPane.showMessageDialog(null, ex.getMessage());
                     }
@@ -371,9 +404,20 @@ public class dlgAsignado extends javax.swing.JDialog {
         try {
             x = AsignadoDAO.getInstancia().buscarAsignado(asignado);
             if (x != null) {
+                
+                lblEmpleado.setVisible(true);
+                lblSucursal.setVisible(true);
+                txtSucursal.setVisible(true);
+                txtEmpleado.setVisible(true);
+                lblEmpleado1.setVisible(false);
+                lblSucursal1.setVisible(false);
+                cboEmpleado.setVisible(false);
+                cboSucursal.setVisible(false);
                 txtCodigo.setText(x.getAsigcodigo());
                 txtFechaIngreso.setText(x.getAsigfechaalta());
                 txtFechaBaja.setText(x.getAsigfechabaja());
+                txtSucursal.setText(x.getSucucodigo());
+                txtEmpleado.setText(x.getEmplcodigo());
                 
             } else {
                 JOptionPane.showMessageDialog(null, "El codigo no existe");
@@ -439,11 +483,22 @@ public class dlgAsignado extends javax.swing.JDialog {
         try {
             x = AsignadoDAO.getInstancia().buscarAsignado(codigo);
             if (x != null) {
+                lblEmpleado.setVisible(true);
+                lblSucursal.setVisible(true);
+                txtSucursal.setVisible(true);
+                txtEmpleado.setVisible(true);
+                lblEmpleado1.setVisible(false);
+                lblSucursal1.setVisible(false);
+                cboEmpleado.setVisible(false);
+                cboSucursal.setVisible(false);
                 txtCodigo.setText(x.getAsigcodigo());
                 txtFechaIngreso.setText(x.getAsigfechaalta());
                 txtFechaBaja.setText(x.getAsigfechabaja());
-                x.setSucucodigo((String) cboSucursal.getSelectedItem());
-                x.setEmplcodigo((String) cboEmpleado.getSelectedItem());
+                txtCodigo.setText(x.getAsigcodigo());
+                txtFechaIngreso.setText(x.getAsigfechaalta());
+                txtFechaBaja.setText(x.getAsigfechabaja());
+                txtSucursal.setText(x.getSucucodigo());
+                txtEmpleado.setText(x.getEmplcodigo());
                 reg = false;
                 textos(true);
                 txtCodigo.setEditable(false);
@@ -477,13 +532,17 @@ public class dlgAsignado extends javax.swing.JDialog {
     private javax.swing.JButton btnlimpiar;
     private javax.swing.JComboBox<Empleado> cboEmpleado;
     private javax.swing.JComboBox<Sucursal> cboSucursal;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel lblEmpleado;
+    private javax.swing.JLabel lblEmpleado1;
+    private javax.swing.JLabel lblSucursal;
+    private javax.swing.JLabel lblSucursal1;
     private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtEmpleado;
     private javax.swing.JTextField txtFechaBaja;
     private javax.swing.JTextField txtFechaIngreso;
+    private javax.swing.JTextField txtSucursal;
     // End of variables declaration//GEN-END:variables
 }

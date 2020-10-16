@@ -323,13 +323,13 @@ begin
     
     IF num>=1 and num<=8 then
 		set num=num+1;
-        set codigo=(select concat('0000', CAST(num as char)));
+        set codigo=(select concat('000', CAST(num as char)));
 	ELSEIF num>=9 and num<=98 then
 		set num=num+1;
-        set codigo=(select concat('000', CAST(num as char)));
+        set codigo=(select concat('00', CAST(num as char)));
 	ELSEIF num>=99 and num<=998 then
 		set num=num+1;
-        set codigo=(select concat('00', CAST(num as char)));
+        set codigo=(select concat('0', CAST(num as char)));
 	ELSEIF num>=999 and num<=9999 then
 		set num=num+1;
         set codigo=(select concat('0', CAST(num as char)));
@@ -407,12 +407,12 @@ CREATE PROCEDURE Generar_Codigo_Asignado()
 begin
 	select max(asigcodigo) from asignado;
 end $
-
+select * from Asignado;
 -- Actualizar Asignado
 delimiter $
-CREATE PROCEDURE Actualizar_Asignado(IN fechaalta date, IN infechabaja date, IN codigo CHAR(6))
+CREATE PROCEDURE Actualizar_Asignado(IN succodigo char(3), IN empcodigo char(4), IN fechaalta date, IN fechabaja date, IN codigo CHAR(6))
 begin
-	update asignado set asigfechaalta=fechaalta, asigfechabaja=fechabaja where asigcodigo=codigo;
+	update asignado set asigfechaalta=fechaalta, asigfechabaja=fechabaja, sucucodigo=succodigo, emplcodigo=empcodigo where asigcodigo=codigo;
 end $
 
 -- Procedimiento Crear Registro Cliente

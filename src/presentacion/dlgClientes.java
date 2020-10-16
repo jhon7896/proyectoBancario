@@ -640,7 +640,6 @@ public class dlgClientes extends javax.swing.JDialog {
         char c = evt.getKeyChar();
         if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "Ingresar solo letras");
         }
     }//GEN-LAST:event_txtCiudadKeyTyped
 
@@ -650,15 +649,10 @@ public class dlgClientes extends javax.swing.JDialog {
 
     private void txtDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIKeyTyped
         // TODO add your handling code here:
-        if (txtDNI.getText().length() <= 8 ) {
-            char c = evt.getKeyChar();
-            if (!Character.isDigit(c)) {
-                evt.consume();
-                JOptionPane.showMessageDialog(rootPane, "Ingresar solo numeros");
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
 
-            }
-        }else{
-            JOptionPane.showMessageDialog(rootPane, "Límite de ingreso: solo 8 digitos");
         }
     }//GEN-LAST:event_txtDNIKeyTyped
 
@@ -667,7 +661,6 @@ public class dlgClientes extends javax.swing.JDialog {
         char c = evt.getKeyChar();
         if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "Ingresar solo letras");
         }
     }//GEN-LAST:event_txtNombresKeyTyped
 
@@ -676,7 +669,6 @@ public class dlgClientes extends javax.swing.JDialog {
         char c = evt.getKeyChar();
         if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "Ingresar solo letras");
         }
     }//GEN-LAST:event_txtApellidosPaternosKeyTyped
 
@@ -695,7 +687,6 @@ public class dlgClientes extends javax.swing.JDialog {
         char c = evt.getKeyChar();
         if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "Ingresar solo letras");
         }
     }//GEN-LAST:event_txtApellidosMaternosKeyTyped
 

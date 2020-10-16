@@ -110,7 +110,7 @@ public class CuentaDAO {
             if (rs.next()) {
                 String monecodigo=rs.getString("monecodigo");
                 String sucucodigo=rs.getString("sucucodigo");
-                String emplcodigo=rs.getString("emplcodigo");
+                String emplcodigo=rs.getString("emplcreacuenta");
                 String cliecodigo=rs.getString("cliecodigo");
                 float cuensaldo=rs.getFloat("cuensaldo");
                 String cuenfechacreacion=rs.getString("cuenfechacreacion");
