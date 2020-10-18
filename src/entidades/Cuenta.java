@@ -5,6 +5,14 @@
  */
 package entidades;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JComboBox;
+
 /**
  *
  * @author BIGZERO
@@ -35,6 +43,10 @@ public class Cuenta {
         this.cuenestado = cuenestado;
         this.cuencontmov = cuencontmov;
         this.cuenclave = cuenclave;
+    }
+
+    public Cuenta(String cuencodigo) {
+        this.cuencodigo = cuencodigo;
     }
 
     public String getCuencodigo() {

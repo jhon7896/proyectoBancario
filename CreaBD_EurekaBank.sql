@@ -24,7 +24,7 @@ USE eurekabank;
 -- =============================================
 -- Eliminar las tablas en caso existan
 -- =============================================
-
+select * from interesmensual;
 DROP TABLE IF EXISTS asignado;
 DROP TABLE IF EXISTS contador;
 DROP TABLE IF EXISTS parametro;
@@ -122,7 +122,7 @@ CREATE TABLE Moneda (
 	CONSTRAINT PK_Moneda 
 		PRIMARY KEY (monecodigo)
 ) ENGINE = INNODB ;
-select * from Cuenta;
+
 CREATE TABLE Cuenta (
 	cuencodigo       CHAR(8) NOT NULL,
 	monecodigo       CHAR(2) NOT NULL,
@@ -517,7 +517,7 @@ end $
 
 
 
-
+select * from costomovimiento;
 
 -- Procedimiento Crear Registro Cuenta
 delimiter $
@@ -544,7 +544,7 @@ begin
 		set num=num+1;
         set codigo=(select concat('0002', CAST(num as char)));
 	ELSE
-		set codigo=(select '00200004');
+		set codigo=(select '00200005');
 	END IF;
 	INSERT INTO Cuenta (cuencodigo,monecodigo,sucucodigo,emplcreacuenta,cliecodigo,cuensaldo,cuenfechacreacion,cuenestado,cuencontmov,cuenclave) value (codigo,monecodigo,sucucodigo,emplcreacuenta,cliecodigo,cuensaldo,cuenfechacreacion,cuenestado,cuencontmov,cuenclave);
 end $

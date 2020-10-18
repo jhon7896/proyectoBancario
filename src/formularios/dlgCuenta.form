@@ -30,145 +30,154 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="54" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabel1" min="-2" pref="95" max="-2" attributes="0"/>
+                      <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                      <Component id="cboTipoMovimiento" min="-2" pref="179" max="-2" attributes="0"/>
+                      <EmptySpace min="556" pref="556" max="-2" attributes="0"/>
+                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
+                      <Component id="txtFecha" min="-2" pref="93" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
+                      <Component id="txtCodigo" min="-2" pref="142" max="-2" attributes="0"/>
+                      <EmptySpace min="32" pref="32" max="-2" attributes="0"/>
+                      <Component id="lblSucursal1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
+                      <Component id="cboSucursal" min="-2" pref="142" max="-2" attributes="0"/>
+                      <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                      <Component id="lblCliente1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                      <Component id="cboCliente" min="-2" pref="235" max="-2" attributes="0"/>
+                      <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
+                      <Component id="lblEmpleado1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
+                      <Component id="cboEmpleado" min="-2" pref="206" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="22" pref="22" max="-2" attributes="0"/>
+                      <Component id="txtSaldo" min="-2" pref="158" max="-2" attributes="0"/>
+                      <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                      <Component id="jLabel8" min="-2" pref="80" max="-2" attributes="0"/>
+                      <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                      <Component id="txtNumMovimientos" min="-2" pref="159" max="-2" attributes="0"/>
+                      <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
+                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
+                      <Component id="cboEstado" min="-2" pref="249" max="-2" attributes="0"/>
+                      <EmptySpace min="36" pref="36" max="-2" attributes="0"/>
                       <Component id="lblMoneda1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
                       <Component id="cboMoneda" min="-2" pref="142" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="936" pref="936" max="-2" attributes="0"/>
-                          <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
-                          <Component id="txtFecha" min="-2" pref="93" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="51" pref="51" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="22" pref="22" max="-2" attributes="0"/>
-                                  <Component id="txtSaldo" min="-2" pref="158" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="lblMoneda" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="txtMoneda" min="-2" pref="153" max="-2" attributes="0"/>
-                              </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lblMoneda" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
+                      <Component id="txtMoneda" min="-2" pref="153" max="-2" attributes="0"/>
+                      <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                      <Component id="lblSucursal" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="42" pref="42" max="-2" attributes="0"/>
+                      <Component id="txtSucursal" min="-2" pref="160" max="-2" attributes="0"/>
+                      <EmptySpace min="19" pref="19" max="-2" attributes="0"/>
+                      <Component id="lblCliente" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
+                      <Component id="txtCliente" min="-2" pref="249" max="-2" attributes="0"/>
+                      <EmptySpace min="39" pref="39" max="-2" attributes="0"/>
+                      <Component id="lblEmpleado" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
+                      <Component id="txtEmpleado" min="-2" pref="138" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lblOperacion" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
+                      <Component id="txtOperacion" min="-2" pref="149" max="-2" attributes="0"/>
+                      <EmptySpace min="172" pref="172" max="-2" attributes="0"/>
+                      <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                      <Component id="txtClave" min="-2" pref="156" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="188" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                              <Component id="btnlimpiar" min="-2" pref="209" max="-2" attributes="0"/>
+                              <EmptySpace min="21" pref="21" max="-2" attributes="0"/>
+                              <Component id="btcancelar" min="-2" pref="209" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="lblSucursal" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="txtSucursal" min="-2" pref="160" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel8" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-                                  <Component id="txtNumMovimientos" min="-2" pref="159" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="btnNuevo" min="-2" pref="140" max="-2" attributes="0"/>
+                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                              <Component id="btnRegistrar" min="-2" pref="140" max="-2" attributes="0"/>
+                              <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
+                              <Component id="btnBuscar" min="-2" pref="140" max="-2" attributes="0"/>
+                              <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
+                              <Component id="btnSalir1" min="-2" pref="140" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel9" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblCliente" alignment="1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="cboEstado" pref="249" max="32767" attributes="0"/>
-                              <Component id="txtCliente" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="lblEmpleado" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtEmpleado" min="-2" pref="138" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
-                          <Component id="txtCodigo" min="-2" pref="142" max="-2" attributes="0"/>
-                          <EmptySpace min="32" pref="32" max="-2" attributes="0"/>
-                          <Component id="lblSucursal1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
-                          <Component id="cboSucursal" min="-2" pref="142" max="-2" attributes="0"/>
-                          <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                          <Component id="lblCliente1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                          <Component id="cboCliente" min="-2" pref="235" max="-2" attributes="0"/>
-                          <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-                          <Component id="lblEmpleado1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
-                          <Component id="cboEmpleado" min="-2" pref="206" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="433" max="-2" attributes="0"/>
-                          <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                          <Component id="txtClave" min="-2" pref="156" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="224" max="-2" attributes="0"/>
-                      <Component id="btnlimpiar" min="-2" pref="209" max="-2" attributes="0"/>
-                      <EmptySpace min="21" pref="21" max="-2" attributes="0"/>
-                      <Component id="btcancelar" min="-2" pref="209" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="btnNuevo" min="-2" pref="140" max="-2" attributes="0"/>
-                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                      <Component id="btnAperturar" min="-2" pref="140" max="-2" attributes="0"/>
-                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                      <Component id="btnModificar" min="-2" pref="140" max="-2" attributes="0"/>
-                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                      <Component id="btnBuscar" min="-2" pref="140" max="-2" attributes="0"/>
-                      <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
-                      <Component id="btnEliminar" min="-2" pref="140" max="-2" attributes="0"/>
-                      <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
-                      <Component id="btnSalir" min="-2" pref="140" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="404" max="-2" attributes="0"/>
+              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="34" pref="34" max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="23" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="cboTipoMovimiento" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
                       <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="txtFecha" min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+              <EmptySpace min="38" pref="38" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="txtCodigo" min="-2" pref="35" max="-2" attributes="0"/>
-                  <Component id="cboSucursal" min="-2" pref="35" max="-2" attributes="0"/>
-                  <Component id="cboCliente" min="-2" pref="35" max="-2" attributes="0"/>
-                  <Component id="cboEmpleado" min="-2" pref="35" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblSucursal1" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblCliente1" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblEmpleado1" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
+                      <Component id="txtCodigo" min="-2" pref="35" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
+                      <Component id="lblSucursal1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="cboSucursal" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
+                      <Component id="lblCliente1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="cboCliente" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
+                      <Component id="lblEmpleado1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="cboEmpleado" min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+              <EmptySpace min="43" pref="43" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
@@ -186,40 +195,51 @@
                   </Group>
                   <Component id="cboEstado" min="-2" pref="35" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                      <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
                       <Component id="lblMoneda1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="cboMoneda" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="cboMoneda" min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace min="49" pref="49" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblSucursal" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblMoneda" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtMoneda" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
+                      <Component id="lblMoneda" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblEmpleado" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtEmpleado" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="txtCliente" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="lblCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtSucursal" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
+                      <Component id="txtMoneda" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
+                      <Component id="lblSucursal" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="txtSucursal" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
+                      <Component id="lblCliente" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="txtCliente" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
+                      <Component id="lblEmpleado" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="txtEmpleado" min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <EmptySpace min="32" pref="32" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
+                      <Component id="lblOperacion" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="txtOperacion" min="-2" pref="35" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
                       <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="txtClave" min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="btnlimpiar" min="-2" pref="47" max="-2" attributes="0"/>
                   <Component id="btcancelar" min="-2" pref="47" max="-2" attributes="0"/>
@@ -227,13 +247,11 @@
               <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="btnNuevo" min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="btnAperturar" min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="btnModificar" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="btnRegistrar" min="-2" pref="40" max="-2" attributes="0"/>
                   <Component id="btnBuscar" min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="btnEliminar" min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="btnSalir" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="btnSalir1" min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="61" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -294,7 +312,7 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Cliente&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="btnAperturar">
+    <Component class="javax.swing.JButton" name="btnRegistrar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Registrar"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -305,7 +323,7 @@
         <Property name="contentAreaFilled" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAperturarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnNuevo">
@@ -348,49 +366,6 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btcancelarActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnModificar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Modificar"/>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
-            <BevelBorder/>
-          </Border>
-        </Property>
-        <Property name="contentAreaFilled" type="boolean" value="false"/>
-      </Properties>
-      <Events>
-        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnModificarMousePressed"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnSalir">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Salir"/>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
-            <BevelBorder/>
-          </Border>
-        </Property>
-        <Property name="contentAreaFilled" type="boolean" value="false"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalirActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnEliminar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Eliminar"/>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
-            <BevelBorder/>
-          </Border>
-        </Property>
-        <Property name="contentAreaFilled" type="boolean" value="false"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnBuscar">
@@ -450,11 +425,10 @@
     <Component class="javax.swing.JComboBox" name="cboEstado">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Seleccione ..."/>
-            <StringItem index="1" value="ACTIVO"/>
-            <StringItem index="2" value="ANULADO"/>
-            <StringItem index="3" value="CANCELADO"/>
+          <StringArray count="3">
+            <StringItem index="0" value="ACTIVO"/>
+            <StringItem index="1" value="ANULADO"/>
+            <StringItem index="2" value="CANCELADO"/>
           </StringArray>
         </Property>
       </Properties>
@@ -520,6 +494,53 @@
     <Component class="javax.swing.JTextField" name="txtMoneda">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnSalir1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Salir"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+            <BevelBorder/>
+          </Border>
+        </Property>
+        <Property name="contentAreaFilled" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalir1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;Tipo de Movimiento&lt;/html&gt;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cboTipoMovimiento">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cboTipoMovimientoActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;TipoMovimiento&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtOperacion">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblOperacion">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Operacion"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel3">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="24" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="OPERACIONES BANCARIAS"/>
       </Properties>
     </Component>
   </SubComponents>

@@ -5,13 +5,12 @@
  */
 package datos;
 
-import entidades.Empleado;
-import datos.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import entidades.Empleado;
 
 /**
  *

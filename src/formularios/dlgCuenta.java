@@ -5,6 +5,8 @@
  */
 package formularios;
 
+import entidades.TipoMovimiento;
+import datos.MovimientoDAO;
 import entidades.Cliente;
 import entidades.Empleado;
 import entidades.Cuenta;
@@ -22,7 +24,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author ZERO
+ * @author BIGZERO
  */
 public final class dlgCuenta extends javax.swing.JDialog {
 
@@ -33,6 +35,7 @@ public final class dlgCuenta extends javax.swing.JDialog {
     Sucursal sucursal = new Sucursal();
     Cliente cliente = new Cliente();
     Moneda moneda = new Moneda();
+    TipoMovimiento tipoMovimiento = new TipoMovimiento();
     String fecha;
 
     public dlgCuenta() throws SQLException {
@@ -43,20 +46,14 @@ public final class dlgCuenta extends javax.swing.JDialog {
         generarCodigoCuenta();
         controles(true);
         textos(false);
+        lblTxt(false);
         empleado.llenarComboEmpleado(cboEmpleado);
         sucursal.llenarComboSucursal(cboSucursal);
         cliente.llenarComboCliente(cboCliente);
         moneda.llenarComboMoneda(cboMoneda);
+        tipoMovimiento.llenarComboTipoMovimiento(cboTipoMovimiento);
         fecha = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         txtFecha.setText(fecha);
-        lblMoneda.setVisible(false);
-        lblEmpleado.setVisible(false);
-        lblSucursal.setVisible(false);
-        lblCliente.setVisible(false);
-        txtCliente.setVisible(false);
-        txtSucursal.setVisible(false);
-        txtEmpleado.setVisible(false);
-        txtMoneda.setVisible(false);
     }
 
     void generarCodigoCuenta() throws SQLException {
@@ -75,26 +72,45 @@ public final class dlgCuenta extends javax.swing.JDialog {
     }
 
     void limpiarTextos() {
-//        txtFechaIngreso.setText("");
-//        txtFechaBaja.setText("");
         cboEstado.setSelectedIndex(0);
+        txtSaldo.setText("");
+        txtNumMovimientos.setText("");
+        txtClave.setText("");
+
     }
 
     void controles(boolean sw) {
         btnNuevo.setEnabled(sw);
-        btnAperturar.setEnabled(!sw);
+        btnRegistrar.setEnabled(!sw);
         btcancelar.setEnabled(!sw);
         btnBuscar.setEnabled(sw);
-        btnEliminar.setEnabled(sw);
-        btnModificar.setEnabled(sw);
         btnlimpiar.setEnabled(!sw);
     }
-    
+
     void textos(boolean sw) {
         txtClave.setEditable(sw);
-
+        txtSaldo.setEditable(sw);
+        txtOperacion.setEditable(sw);
     }
-    
+
+    void lblTxt(boolean sw) {
+        lblMoneda.setVisible(sw);
+        lblEmpleado.setVisible(sw);
+        lblSucursal.setVisible(sw);
+        lblCliente.setVisible(sw);
+        txtCliente.setVisible(sw);
+        txtSucursal.setVisible(sw);
+        txtEmpleado.setVisible(sw);
+        txtMoneda.setVisible(sw);
+        lblMoneda1.setVisible(!sw);
+        lblEmpleado1.setVisible(!sw);
+        lblSucursal1.setVisible(!sw);
+        lblCliente1.setVisible(!sw);
+        cboCliente.setVisible(!sw);
+        cboEmpleado.setVisible(!sw);
+        cboSucursal.setVisible(!sw);
+        cboMoneda.setVisible(!sw);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -114,13 +130,10 @@ public final class dlgCuenta extends javax.swing.JDialog {
         lblSucursal1 = new javax.swing.JLabel();
         lblCliente1 = new javax.swing.JLabel();
         cboCliente = new javax.swing.JComboBox<>();
-        btnAperturar = new javax.swing.JButton();
+        btnRegistrar = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
         btnlimpiar = new javax.swing.JButton();
         btcancelar = new javax.swing.JButton();
-        btnModificar = new javax.swing.JButton();
-        btnSalir = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         lblMoneda1 = new javax.swing.JLabel();
         cboMoneda = new javax.swing.JComboBox<>();
@@ -142,6 +155,12 @@ public final class dlgCuenta extends javax.swing.JDialog {
         txtEmpleado = new javax.swing.JTextField();
         lblMoneda = new javax.swing.JLabel();
         txtMoneda = new javax.swing.JTextField();
+        btnSalir1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        cboTipoMovimiento = new javax.swing.JComboBox<>();
+        txtOperacion = new javax.swing.JTextField();
+        lblOperacion = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         jLabel4.setText("jLabel4");
 
@@ -157,12 +176,12 @@ public final class dlgCuenta extends javax.swing.JDialog {
 
         lblCliente1.setText("Cliente");
 
-        btnAperturar.setText("Registrar");
-        btnAperturar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnAperturar.setContentAreaFilled(false);
-        btnAperturar.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrar.setText("Registrar");
+        btnRegistrar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnRegistrar.setContentAreaFilled(false);
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAperturarActionPerformed(evt);
+                btnRegistrarActionPerformed(evt);
             }
         });
 
@@ -193,38 +212,6 @@ public final class dlgCuenta extends javax.swing.JDialog {
             }
         });
 
-        btnModificar.setText("Modificar");
-        btnModificar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnModificar.setContentAreaFilled(false);
-        btnModificar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnModificarMousePressed(evt);
-            }
-        });
-        btnModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarActionPerformed(evt);
-            }
-        });
-
-        btnSalir.setText("Salir");
-        btnSalir.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnSalir.setContentAreaFilled(false);
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
-            }
-        });
-
-        btnEliminar.setText("Eliminar");
-        btnEliminar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnEliminar.setContentAreaFilled(false);
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
-
         btnBuscar.setText("Buscar");
         btnBuscar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnBuscar.setContentAreaFilled(false);
@@ -246,7 +233,7 @@ public final class dlgCuenta extends javax.swing.JDialog {
 
         jLabel9.setText("Estado");
 
-        cboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione ...", "ACTIVO", "ANULADO", "CANCELADO" }));
+        cboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACTIVO", "ANULADO", "CANCELADO" }));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("Clave");
@@ -271,122 +258,157 @@ public final class dlgCuenta extends javax.swing.JDialog {
 
         txtMoneda.setEditable(false);
 
+        btnSalir1.setText("Salir");
+        btnSalir1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnSalir1.setContentAreaFilled(false);
+        btnSalir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalir1ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("<html>Tipo de Movimiento</html>");
+
+        cboTipoMovimiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboTipoMovimientoActionPerformed(evt);
+            }
+        });
+
+        lblOperacion.setText("Operacion");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel3.setText("OPERACIONES BANCARIAS");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(54, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(cboTipoMovimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(556, 556, 556)
+                        .addComponent(jLabel11)
+                        .addGap(5, 5, 5)
+                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel2)
+                        .addGap(5, 5, 5)
+                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(lblSucursal1)
+                        .addGap(5, 5, 5)
+                        .addComponent(cboSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblCliente1)
+                        .addGap(18, 18, 18)
+                        .addComponent(cboCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(lblEmpleado1)
+                        .addGap(5, 5, 5)
+                        .addComponent(cboEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(22, 22, 22)
+                        .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(txtNumMovimientos, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel9)
+                        .addGap(5, 5, 5)
+                        .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
                         .addComponent(lblMoneda1)
                         .addGap(5, 5, 5)
                         .addComponent(cboMoneda, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(936, 936, 936)
-                            .addComponent(jLabel11)
-                            .addGap(5, 5, 5)
-                            .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(51, 51, 51)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel7)
-                                    .addGap(22, 22, 22)
-                                    .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(lblMoneda)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtMoneda, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(lblSucursal)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(12, 12, 12)
-                                    .addComponent(txtNumMovimientos, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(19, 19, 19)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lblCliente, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addGap(5, 5, 5)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(cboEstado, 0, 249, Short.MAX_VALUE)
-                                .addComponent(txtCliente))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblEmpleado)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(4, 4, 4))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(61, 61, 61)
-                            .addComponent(jLabel2)
-                            .addGap(5, 5, 5)
-                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(32, 32, 32)
-                            .addComponent(lblSucursal1)
-                            .addGap(5, 5, 5)
-                            .addComponent(cboSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(lblCliente1)
-                            .addGap(18, 18, 18)
-                            .addComponent(cboCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(20, 20, 20)
-                            .addComponent(lblEmpleado1)
-                            .addGap(5, 5, 5)
-                            .addComponent(cboEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(433, 433, 433)
-                            .addComponent(jLabel10)
-                            .addGap(18, 18, 18)
-                            .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(27, 27, 27))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(224, 224, 224)
-                        .addComponent(btnlimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21)
-                        .addComponent(btcancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblMoneda)
+                        .addGap(14, 14, 14)
+                        .addComponent(txtMoneda, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblSucursal)
+                        .addGap(42, 42, 42)
+                        .addComponent(txtSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
+                        .addComponent(lblCliente)
+                        .addGap(5, 5, 5)
+                        .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(lblEmpleado)
+                        .addGap(5, 5, 5)
+                        .addComponent(txtEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(btnAperturar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7)
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(104, 104, 104))
+                        .addComponent(lblOperacion)
+                        .addGap(5, 5, 5)
+                        .addComponent(txtOperacion, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(172, 172, 172)
+                        .addComponent(jLabel10)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(188, 188, 188)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(73, 73, 73)
+                                .addComponent(btnlimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(21, 21, 21)
+                                .addComponent(btcancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(7, 7, 7)
+                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(7, 7, 7)
+                                .addComponent(btnSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(404, 404, 404)
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboTipoMovimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addComponent(jLabel11))
                     .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(9, 9, 9)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(lblSucursal1)
-                            .addComponent(lblCliente1)
-                            .addComponent(lblEmpleado1))))
+                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(lblSucursal1))
+                    .addComponent(cboSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(lblCliente1))
+                    .addComponent(cboCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(lblEmpleado1))
+                    .addComponent(cboEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -405,50 +427,59 @@ public final class dlgCuenta extends javax.swing.JDialog {
                         .addGap(9, 9, 9)
                         .addComponent(lblMoneda1))
                     .addComponent(cboMoneda, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblSucursal)
-                            .addComponent(lblMoneda)
-                            .addComponent(txtMoneda, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(11, 11, 11)
+                        .addComponent(lblMoneda))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblEmpleado)
-                            .addComponent(txtEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCliente)
-                            .addComponent(txtSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(27, 27, 27)
+                        .addGap(2, 2, 2)
+                        .addComponent(txtMoneda, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(lblSucursal))
+                    .addComponent(txtSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(lblCliente))
+                    .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(lblEmpleado))
+                    .addComponent(txtEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(lblOperacion))
+                    .addComponent(txtOperacion, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(jLabel10))
                     .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnlimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btcancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAperturar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(61, Short.MAX_VALUE))
+                    .addComponent(btnSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(66, 66, 66))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAperturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAperturarActionPerformed
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         // TODO add your handling code here:
-        String codigoCuenta, codigoMoneda, codigoSucursal, codigoEmpleado, codigoCliente, clave, estado;
+        String codigoCuenta, codigoMoneda, codigoSucursal, codigoEmpleado,
+                codigoCliente, codigoTipoMovimiento, clave, estado;
         float saldo;
         int numMovimiento;
+        int monto = 0;
         if (txtSaldo.getText().compareTo("") != 0) {
             try {
 
@@ -457,15 +488,50 @@ public final class dlgCuenta extends javax.swing.JDialog {
                 codigoSucursal = cboSucursal.getItemAt(cboSucursal.getSelectedIndex()).getSucucodigo();
                 codigoEmpleado = cboEmpleado.getItemAt(cboEmpleado.getSelectedIndex()).getEmplcodigo();
                 codigoCliente = cboCliente.getItemAt(cboCliente.getSelectedIndex()).getCliecodigo();
+                codigoTipoMovimiento = cboTipoMovimiento.getItemAt(cboTipoMovimiento.getSelectedIndex()).getTipocodigo();
                 saldo = Float.parseFloat(txtSaldo.getText());
                 estado = (String) cboEstado.getSelectedItem();
                 numMovimiento = Integer.parseInt(txtNumMovimientos.getText());
                 clave = txtClave.getText();
+                monto = Integer.parseInt(txtOperacion.getText());
+                
+                if (codigoTipoMovimiento.equalsIgnoreCase("003")) {
+                    if (txtMoneda.getText().equalsIgnoreCase("01")) {
+                        if (numMovimiento <= 15) {
+                            saldo = saldo + monto;
+                        } else {
+                            saldo = saldo + monto - 2;
+                        }
+
+                    } else {
+                        if (numMovimiento <= 15) {
+                            saldo = (float) (saldo + monto);
+                        } else {
+                            saldo = (float) (saldo + monto - 0.6);
+                        }
+                    }
+                } else if (codigoTipoMovimiento.equalsIgnoreCase("004")) {
+                    if (txtMoneda.getText().equalsIgnoreCase("01")) {
+                        if (numMovimiento <= 15) {
+                            saldo = saldo - monto;
+                        } else {
+                            saldo = saldo - monto - 2;
+                        }
+
+                    } else {
+                        if (numMovimiento <= 15) {
+                            saldo = (float) (saldo - monto);
+                        } else {
+                            saldo = (float) (saldo - monto - 0.6);
+                        }
+                    }
+                }
                 if (reg) {
                     try {
+
                         CuentaDAO.getInstancia().insertar(codigoCuenta, codigoMoneda, codigoSucursal,
                                 codigoEmpleado, codigoCliente, saldo, fecha, estado, numMovimiento, clave);
-                        JOptionPane.showMessageDialog(null, "Dato registrado");
+                        JOptionPane.showMessageDialog(null, "Cuenta Aperturada");
                         generarCodigoCuenta();
                     } catch (SQLException ex) {
                         JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -473,10 +539,12 @@ public final class dlgCuenta extends javax.swing.JDialog {
 
                 } else {
                     try {
+                        numMovimiento += 1;
                         CuentaDAO.getInstancia().actualizar(codigoCuenta, codigoMoneda, codigoSucursal,
                                 codigoEmpleado, codigoCliente, saldo, fecha, estado, numMovimiento, clave);
-                        JOptionPane.showMessageDialog(null, "Dato modificado");
-                        btnAperturar.setText("Modificar");
+                        MovimientoDAO.getInstancia().insertar(codigoCuenta, numMovimiento, fecha, codigoEmpleado, codigoTipoMovimiento, monto, null);
+                        JOptionPane.showMessageDialog(null, "Operación realizada con EXITO!!");
+                        generarCodigoCuenta();
                     } catch (SQLException ex) {
                         JOptionPane.showMessageDialog(null, ex.getMessage());
                     }
@@ -493,13 +561,14 @@ public final class dlgCuenta extends javax.swing.JDialog {
         } else {
             JOptionPane.showMessageDialog(null, "faltan llenar datos");
         }
-    }//GEN-LAST:event_btnAperturarActionPerformed
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
         reg = true;
         controles(false);
         textos(true);
+        lblTxt(false);
         limpiarTextos();
         txtNumMovimientos.setEditable(false);
         txtNumMovimientos.setText("0");
@@ -514,93 +583,18 @@ public final class dlgCuenta extends javax.swing.JDialog {
     }//GEN-LAST:event_btnlimpiarActionPerformed
 
     private void btcancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btcancelarActionPerformed
-        // TODO add your handling code here:
-        limpiarTextos();
-        textos(true);
-        controles(true);
-    }//GEN-LAST:event_btcancelarActionPerformed
-
-    private void btnModificarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnModificarMousePressed
-
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        // TODO add your handling code here:
-        String codigo;
-        limpiarTextos();
-        codigo = JOptionPane.showInputDialog("Ingrese el codigo de la cuenta a modificar : ");
-        Cuenta x;
         try {
-            x = CuentaDAO.getInstancia().buscarCuenta(codigo);
-            if (x != null) {
-                lblMoneda.setVisible(true);
-                lblEmpleado.setVisible(true);
-                lblSucursal.setVisible(true);
-                lblCliente.setVisible(true);
-                txtCliente.setVisible(true);
-                txtSucursal.setVisible(true);
-                txtEmpleado.setVisible(true);
-                txtMoneda.setVisible(true);
-                lblMoneda1.setVisible(false);
-                lblEmpleado1.setVisible(false);
-                lblSucursal1.setVisible(false);
-                lblCliente1.setVisible(false);
-                cboCliente.setVisible(false);
-                cboEmpleado.setVisible(false);
-                cboSucursal.setVisible(false);
-                cboMoneda.setVisible(false);
-                txtCodigo.setText(x.getCuencodigo());
-                txtSaldo.setText(String.valueOf(x.getCuensaldo()));
-                txtNumMovimientos.setText(String.valueOf(x.getCuencontmov()));
-                txtClave.setText(x.getCuenclave());
-                txtSucursal.setText(x.getSucucodigo());
-                txtCliente.setText(x.getCliecodigo());
-                txtEmpleado.setText(x.getEmplcreacuenta());
-                txtMoneda.setText(x.getMonecodigo());
-                x.setCuenestado((String) cboEstado.getSelectedItem());
-                reg = false;
-                controles(false);
-                textos(true);
-            } else {
-                JOptionPane.showMessageDialog(null, "El codigo Asignado no existe");
-            }
+            // TODO add your handling code here:
+            limpiarTextos();
+            textos(false);
+            controles(true);
+            lblTxt(false);
+            generarCodigoCuenta();
+            lblOperacion.setText("Operacion");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
+            Logger.getLogger(dlgCuenta.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnModificarActionPerformed
-
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_btnSalirActionPerformed
-
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
-//        String codigo;
-//        int p;
-//        limpiarTextos();
-//        codigo = JOptionPane.showInputDialog("El codigo del cliente a eliminar : ");
-//        Asignado x;
-//        try {
-//            x = AsignadoDAO.getInstancia().buscarAsignado(codigo);
-//            if (x != null) {
-//                txtCodigo.setText(x.getEmplcodigo());
-//                txtFechaIngreso.setText(x.getAsigfechaalta());
-//                txtFechaBaja.setText(x.getAsigfechabaja());
-//                int resp = JOptionPane.showConfirmDialog(this, "Deseas Eliminarlo ", "Eliminar Dato", JOptionPane.YES_NO_OPTION);
-//                if (resp == JOptionPane.YES_OPTION) {
-//                    EmpleadoDAO.getInstancia().eliminar(codigo);
-//                    JOptionPane.showMessageDialog(this, "Registro eliminado");
-//                }
-//                generarCodigoAsignado();
-//                limpiarTextos();
-//            } else {
-//                JOptionPane.showMessageDialog(null, "El codigo del cliente no existe");
-//            }
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(null, ex.getMessage());
-//        }
-    }//GEN-LAST:event_btnEliminarActionPerformed
+    }//GEN-LAST:event_btcancelarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
@@ -611,23 +605,7 @@ public final class dlgCuenta extends javax.swing.JDialog {
         try {
             x = CuentaDAO.getInstancia().buscarCuenta(cuenta);
             if (x != null) {
-                lblMoneda.setVisible(true);
-                lblEmpleado.setVisible(true);
-                lblSucursal.setVisible(true);
-                lblCliente.setVisible(true);
-                txtCliente.setVisible(true);
-                txtSucursal.setVisible(true);
-                txtEmpleado.setVisible(true);
-                txtMoneda.setVisible(true);
-                lblMoneda1.setVisible(false);
-                lblEmpleado1.setVisible(false);
-                lblSucursal1.setVisible(false);
-                lblCliente1.setVisible(false);
-                cboCliente.setVisible(false);
-                cboEmpleado.setVisible(false);
-                cboSucursal.setVisible(false);
-                cboMoneda.setVisible(false);
-                
+                lblTxt(true);
                 txtCodigo.setText(x.getCuencodigo());
                 x.setCuenestado((String) cboEstado.getSelectedItem());
                 txtSaldo.setText(String.valueOf(x.getCuensaldo()));
@@ -646,23 +624,164 @@ public final class dlgCuenta extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void btnSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir1ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnSalir1ActionPerformed
+
+    private void cboTipoMovimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTipoMovimientoActionPerformed
+        // TODO add your handling code here:
+        String codigoTipoMovimiento = cboTipoMovimiento.getItemAt(cboTipoMovimiento.getSelectedIndex()).getTipocodigo();
+        if (codigoTipoMovimiento.equalsIgnoreCase("001")) {
+            btnRegistrar.setText("Aperturar");
+        } else if (codigoTipoMovimiento.equalsIgnoreCase("002")) {
+            btnRegistrar.setText("Cancelar");
+            String codigo;
+            limpiarTextos();
+            codigo = JOptionPane.showInputDialog("Ingrese el codigo de la cuenta a cancelar : ");
+            Cuenta x;
+            try {
+                x = CuentaDAO.getInstancia().buscarCuenta(codigo);
+                if (x != null) {
+                    lblTxt(true);
+                    txtCodigo.setText(x.getCuencodigo());
+                    txtSaldo.setText(String.valueOf(x.getCuensaldo()));
+                    txtNumMovimientos.setText(String.valueOf(x.getCuencontmov()));
+                    txtClave.setText(x.getCuenclave());
+                    txtSucursal.setText(x.getSucucodigo());
+                    txtCliente.setText(x.getCliecodigo());
+                    txtEmpleado.setText(x.getEmplcreacuenta());
+                    txtMoneda.setText(x.getMonecodigo());
+                    x.setCuenestado((String) cboEstado.getSelectedItem());
+                    reg = false;
+                    controles(false);
+                    textos(true);
+                    txtClave.setEditable(false);
+                } else {
+                    JOptionPane.showMessageDialog(null, "El codigo Asignado no existe");
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
+        } else if (codigoTipoMovimiento.equalsIgnoreCase("003")) {
+            btnRegistrar.setText("Depositar");
+            lblOperacion.setText("Deposito");
+            String codigo;
+            limpiarTextos();
+            codigo = JOptionPane.showInputDialog("Ingrese el codigo de la cuenta a modificar : ");
+            Cuenta x;
+            try {
+                x = CuentaDAO.getInstancia().buscarCuenta(codigo);
+                if (x != null) {
+                    lblTxt(true);
+                    txtCodigo.setText(x.getCuencodigo());
+                    txtSaldo.setText(String.valueOf(x.getCuensaldo()));
+                    txtNumMovimientos.setText(String.valueOf(x.getCuencontmov()));
+                    txtClave.setText(x.getCuenclave());
+                    txtSucursal.setText(x.getSucucodigo());
+                    txtCliente.setText(x.getCliecodigo());
+                    txtEmpleado.setText(x.getEmplcreacuenta());
+                    txtMoneda.setText(x.getMonecodigo());
+                    x.setCuenestado((String) cboEstado.getSelectedItem());
+                    reg = false;
+                    controles(false);
+                    textos(true);
+                    txtClave.setEditable(false);
+                } else {
+                    JOptionPane.showMessageDialog(null, "El codigo Asignado no existe");
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
+        } else if (codigoTipoMovimiento.equalsIgnoreCase("004")) {
+            btnRegistrar.setText("Retirar");
+            lblOperacion.setText("Retiro");
+            String codigo;
+            limpiarTextos();
+            codigo = JOptionPane.showInputDialog("Ingrese el codigo de la cuenta a modificar : ");
+            Cuenta x;
+            try {
+                x = CuentaDAO.getInstancia().buscarCuenta(codigo);
+                if (x != null) {
+                    lblTxt(true);
+                    txtCodigo.setText(x.getCuencodigo());
+                    txtSaldo.setText(String.valueOf(x.getCuensaldo()));
+                    txtNumMovimientos.setText(String.valueOf(x.getCuencontmov()));
+                    txtClave.setText(x.getCuenclave());
+                    txtSucursal.setText(x.getSucucodigo());
+                    txtCliente.setText(x.getCliecodigo());
+                    txtEmpleado.setText(x.getEmplcreacuenta());
+                    txtMoneda.setText(x.getMonecodigo());
+                    x.setCuenestado((String) cboEstado.getSelectedItem());
+                    reg = false;
+                    controles(false);
+                    textos(true);
+                    txtClave.setEditable(false);
+                } else {
+                    JOptionPane.showMessageDialog(null, "El codigo Asignado no existe");
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
+        } else if (codigoTipoMovimiento.equalsIgnoreCase("005")) {
+            btnRegistrar.setText("Cobrar Intereses");
+            String codigo;
+            limpiarTextos();
+            codigo = JOptionPane.showInputDialog("Ingrese el codigo de la cuenta a modificar : ");
+            Cuenta x;
+            try {
+                x = CuentaDAO.getInstancia().buscarCuenta(codigo);
+                if (x != null) {
+                    lblTxt(true);
+                    txtCodigo.setText(x.getCuencodigo());
+                    txtSaldo.setText(String.valueOf(x.getCuensaldo()));
+                    txtNumMovimientos.setText(String.valueOf(x.getCuencontmov()));
+                    txtClave.setText(x.getCuenclave());
+                    txtSucursal.setText(x.getSucucodigo());
+                    txtCliente.setText(x.getCliecodigo());
+                    txtEmpleado.setText(x.getEmplcreacuenta());
+                    txtMoneda.setText(x.getMonecodigo());
+                    x.setCuenestado((String) cboEstado.getSelectedItem());
+                    reg = false;
+                    controles(false);
+                    textos(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "El codigo Asignado no existe");
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
+        } else if (codigoTipoMovimiento.equalsIgnoreCase("006")) {
+            btnRegistrar.setText("Cobrar Mantenimiento");
+        } else if (codigoTipoMovimiento.equalsIgnoreCase("007")) {
+            btnRegistrar.setText("ITF");
+        } else if (codigoTipoMovimiento.equalsIgnoreCase("008")) {
+            btnRegistrar.setText("Transferencia");
+        } else if (codigoTipoMovimiento.equalsIgnoreCase("009")) {
+            btnRegistrar.setText("Transferencia");
+        } else {
+            btnRegistrar.setText("Cargo Mantenimiento");
+        }
+    }//GEN-LAST:event_cboTipoMovimientoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btcancelar;
-    private javax.swing.JButton btnAperturar;
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnNuevo;
-    private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton btnSalir1;
     private javax.swing.JButton btnlimpiar;
     private javax.swing.JComboBox<Cliente> cboCliente;
     private javax.swing.JComboBox<Empleado> cboEmpleado;
     private javax.swing.JComboBox<String> cboEstado;
     private javax.swing.JComboBox<Moneda> cboMoneda;
     private javax.swing.JComboBox<Sucursal> cboSucursal;
+    private javax.swing.JComboBox<TipoMovimiento> cboTipoMovimiento;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -673,6 +792,7 @@ public final class dlgCuenta extends javax.swing.JDialog {
     private javax.swing.JLabel lblEmpleado1;
     private javax.swing.JLabel lblMoneda;
     private javax.swing.JLabel lblMoneda1;
+    private javax.swing.JLabel lblOperacion;
     private javax.swing.JLabel lblSucursal;
     private javax.swing.JLabel lblSucursal1;
     private javax.swing.JPasswordField txtClave;
@@ -682,6 +802,7 @@ public final class dlgCuenta extends javax.swing.JDialog {
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtMoneda;
     private javax.swing.JTextField txtNumMovimientos;
+    private javax.swing.JTextField txtOperacion;
     private javax.swing.JTextField txtSaldo;
     private javax.swing.JTextField txtSucursal;
     // End of variables declaration//GEN-END:variables

@@ -13,7 +13,7 @@ import entidades.Cuenta;
 
 /**
  *
- * @author ZERO
+ * @author BIGZERO
  */
 public class CuentaDAO {
     private Connection cnn = null;

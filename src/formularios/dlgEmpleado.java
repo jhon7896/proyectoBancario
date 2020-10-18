@@ -111,6 +111,7 @@ public class dlgEmpleado extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         txtClave = new javax.swing.JPasswordField();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -284,6 +285,9 @@ public class dlgEmpleado extends javax.swing.JDialog {
 
         jLabel1.setText("Codigo:");
 
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel12.setText("MANTENEDOR DE EMPLEADO");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -344,13 +348,18 @@ public class dlgEmpleado extends javax.swing.JDialog {
                         .addGap(74, 74, 74)
                         .addComponent(jLabel10)
                         .addGap(18, 18, 18)
-                        .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(372, 372, 372)
+                        .addComponent(jLabel12)))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addContainerGap()
+                .addComponent(jLabel12)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(9, 9, 9)
@@ -672,6 +681,7 @@ public class dlgEmpleado extends javax.swing.JDialog {
     private javax.swing.JButton btnlimpiar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
