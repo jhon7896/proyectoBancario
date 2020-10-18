@@ -5,9 +5,8 @@
  */
 package formularios;
 
-import entidades.Cliente;
-import datos.Conexion;
 import datos.ClienteDAO;
+import entidades.Cliente;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;

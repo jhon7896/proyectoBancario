@@ -7,7 +7,6 @@ package formularios;
 
 import datos.EmpleadoDAO;
 import entidades.Empleado;
-import datos.Conexion;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;

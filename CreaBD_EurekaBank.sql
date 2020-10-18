@@ -13,7 +13,6 @@ Script         :  Crea la Base de Datos
 
 CREATE DATABASE IF NOT EXISTS eurekabank;
 
-
 -- =============================================
 -- Seleccionar la Base de Datos
 -- =============================================
@@ -24,7 +23,7 @@ USE eurekabank;
 -- =============================================
 -- Eliminar las tablas en caso existan
 -- =============================================
-select * from interesmensual;
+
 DROP TABLE IF EXISTS asignado;
 DROP TABLE IF EXISTS contador;
 DROP TABLE IF EXISTS parametro;
@@ -38,6 +37,7 @@ DROP TABLE IF EXISTS interesmensual;
 DROP TABLE IF EXISTS costomovimiento;
 DROP TABLE IF EXISTS cargomantenimiento;
 DROP TABLE IF EXISTS moneda;
+
 -- =============================================
 -- Creación de los Objetos de la Base de Datos
 -- =============================================
@@ -517,7 +517,7 @@ end $
 
 
 
-select * from costomovimiento;
+
 
 -- Procedimiento Crear Registro Cuenta
 delimiter $
@@ -564,3 +564,34 @@ begin
 	update Cuenta set monecodigo=moncodigo, sucucodigo=succodigo, emplcreacuenta=empcreacuenta, cliecodigo=clicodigo, cuensaldo=saldo, cuenfechacreacion=fecha,
     cuenestado=estado, cuencontmov=contmov, cuenclave=clave where cuencodigo=codigo;
 end $
+
+/*
+Mostrar Reporte de los empleados asignado a la sucursal respectiva
+SELECT
+     asignado.`asigcodigo` AS Codigo,
+     CONCAT(empleado.`emplpaterno`, ' ', empleado.`emplmaterno`) AS 'Apellidos',
+     empleado.`emplnombre` AS 'Nombres Completos',
+     sucursal.`sucunombre` AS Sucursal,
+     asignado.`asigfechaalta` AS 'Fecha de Alta',
+     asignado.`asigfechabaja` AS 'Fecha de Baja'
+     
+FROM
+     `empleado` empleado INNER JOIN `asignado` asignado ON empleado.`emplcodigo` = asignado.`emplcodigo`
+     INNER JOIN `sucursal` sucursal ON asignado.`sucucodigo` = sucursal.`sucucodigo` order by asigcodigo
+*/
+
+/*
+Mostrar Reporte de movimientos de una cuenta para reportes
+SELECT
+     movimiento.`cuencodigo` AS 'Numero de Cuenta',
+     movimiento.`movinumero` AS 'Numero de Movimiento',
+     movimiento.`movifecha` AS 'Fecha',
+     CONCAT(empleado.`emplpaterno`, ' ', empleado.`emplmaterno`) AS 'Apellidos',
+     empleado.`emplnombre` AS 'Nombre Completo',
+     tipomovimiento.`tipodescripcion` AS 'Movimiento',
+     movimiento.`moviimporte` AS Importe,
+     movimiento.`cuenreferencia` AS 'Cuenta de Referencia'
+FROM
+     `empleado` empleado INNER JOIN `movimiento` movimiento ON empleado.`emplcodigo` = movimiento.`emplcodigo`
+     INNER JOIN `tipomovimiento` tipomovimiento ON movimiento.`tipocodigo` = tipomovimiento.`tipocodigo` where cuencodigo=00100001;
+*/

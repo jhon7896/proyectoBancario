@@ -5,6 +5,7 @@
  */
 package datos;
 
+import formularios.Conexion;
 import java.sql.*;
 import java.util.*;
 import entidades.Cliente;

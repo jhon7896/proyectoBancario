@@ -6,7 +6,7 @@
 package datos;
 
 import entidades.Sucursal;
-import datos.Conexion;
+import formularios.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

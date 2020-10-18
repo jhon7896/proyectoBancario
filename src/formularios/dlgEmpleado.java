@@ -7,12 +7,18 @@ package formularios;
 
 import datos.EmpleadoDAO;
 import entidades.Empleado;
-import datos.Conexion;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -578,8 +584,21 @@ public class dlgEmpleado extends javax.swing.JDialog {
 
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
         // TODO add your handling code here:
-        dlgReporteEmpleados f = new dlgReporteEmpleados();
-        f.setVisible(true);
+//        dlgReporteEmpleados f = new dlgReporteEmpleados();
+//        f.setVisible(true);
+        Conexion con = new Conexion();
+        try{
+            Connection conn = con.miConexion();
+            JasperReport reporte = null;
+            String path = "src\\reportes\\Empleados.jasper";
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,null,conn);
+            JasperViewer view = new JasperViewer(jprint,false);
+            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            view.setVisible(true);
+        } catch (JRException ex) {
+            Logger.getLogger(dlgClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnMostrarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed

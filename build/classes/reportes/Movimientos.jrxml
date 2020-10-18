@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b4fc1e13-4c0f-41d6-80b0-28114113e4d1">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="numeroCuenta" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     movimiento.`cuencodigo` AS 'Numero de Cuenta',
+     movimiento.`movinumero` AS 'Numero de Movimiento',
+     movimiento.`movifecha` AS 'Fecha',
+     CONCAT(empleado.`emplpaterno`, ' ', empleado.`emplmaterno`) AS 'Apellidos',
+     empleado.`emplnombre` AS 'Nombre Completo',
+     tipomovimiento.`tipodescripcion` AS 'Movimiento',
+     movimiento.`moviimporte` AS Importe,
+     movimiento.`cuenreferencia` AS 'Cuenta de Referencia'
+FROM
+     `empleado` empleado INNER JOIN `movimiento` movimiento ON empleado.`emplcodigo` = movimiento.`emplcodigo`
+     INNER JOIN `tipomovimiento` tipomovimiento ON movimiento.`tipocodigo` = tipomovimiento.`tipocodigo` where cuencodigo=$P{numeroCuenta};]]>
+	</queryString>
+	<field name="Numero de Cuenta" class="java.lang.String"/>
+	<field name="Numero de Movimiento" class="java.lang.Integer"/>
+	<field name="Fecha" class="java.sql.Date"/>
+	<field name="Apellidos" class="java.lang.String"/>
+	<field name="Nombre Completo" class="java.lang.String"/>
+	<field name="Movimiento" class="java.lang.String"/>
+	<field name="Importe" class="java.math.BigDecimal"/>
+	<field name="Cuenta de Referencia" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="217" y="0" width="383" height="62" uuid="5e6d7e74-469b-46cf-b72e-2e6ab4ed9ca7"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Banco EUREKA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="256" y="62" width="196" height="22" uuid="8a29e841-6423-4867-b724-8f33c951ee2d"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Movimientos de la cuenta]]></text>
+			</staticText>
+			<image>
+				<reportElement x="1" y="0" width="157" height="124" uuid="599fd6c0-8445-449e-8519-ee373fd9fc61"/>
+				<imageExpression><![CDATA["D:\\ZERO\\Documents\\NetBeansProjects\\POOII_Proyecto_Final\\src\\reportes\\banco.jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="452" y="64" width="100" height="20" uuid="924a7f02-ee49-453d-ba6a-e2f69ef910cd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{numeroCuenta}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="802" height="1" uuid="95d1ed1f-6756-445c-a698-7588d049ff92"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="100" height="15" forecolor="#736343" uuid="c43a4c43-e638-45a1-9b3c-4ab3121676a4"/>
+				<text><![CDATA[Numero de Cuenta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="100" y="0" width="100" height="15" forecolor="#736343" uuid="a12ee980-65d9-4322-be12-8d07e35ea80d"/>
+				<text><![CDATA[Numero de Movimiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="200" y="0" width="100" height="15" forecolor="#736343" uuid="c3d43425-c2b4-4424-8293-aab5cd75c81c"/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="300" y="0" width="100" height="15" forecolor="#736343" uuid="11cdd45f-f27f-4833-bbdb-9af07daae1fc"/>
+				<text><![CDATA[Apellidos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="400" y="0" width="100" height="15" forecolor="#736343" uuid="bd94cf43-a086-4823-aa05-55782668c3bc"/>
+				<text><![CDATA[Nombre Completo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="500" y="0" width="100" height="15" forecolor="#736343" uuid="2f66de33-cf2f-4314-854a-dd0850518d53"/>
+				<text><![CDATA[Movimiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="600" y="0" width="100" height="15" forecolor="#736343" uuid="a4545b4b-589b-4ab7-bf23-5ecf250b841f"/>
+				<text><![CDATA[Importe]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="700" y="0" width="100" height="15" forecolor="#736343" uuid="342e2580-3a9b-41e4-9b54-12cba57a78f2"/>
+				<text><![CDATA[Cuenta de Referencia]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="802" height="15" uuid="375a9385-48d0-46ea-9bf1-3f735e6829ca"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="100" height="15" uuid="28dd82c0-b714-45c5-9a27-fb1375bdcf9d"/>
+					<textFieldExpression><![CDATA[$F{Numero de Cuenta}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="100" y="0" width="100" height="15" uuid="c486a594-e169-4207-93be-a1dbcef35488"/>
+					<textFieldExpression><![CDATA[$F{Numero de Movimiento}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="200" y="0" width="100" height="15" uuid="b9e78e9d-ff01-42a5-9f2b-a792af685d04"/>
+					<textFieldExpression><![CDATA[$F{Fecha}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="300" y="0" width="100" height="15" uuid="ae3dfc77-f7e5-4e54-a7c8-25ce8d2b776e"/>
+					<textFieldExpression><![CDATA[$F{Apellidos}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="400" y="0" width="100" height="15" uuid="b82cd87a-f2a7-495f-b080-8079ef5aaee2"/>
+					<textFieldExpression><![CDATA[$F{Nombre Completo}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="500" y="0" width="100" height="15" uuid="8f4a05a2-5ff4-484d-ac85-28e3513e6a45"/>
+					<textFieldExpression><![CDATA[$F{Movimiento}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="600" y="0" width="100" height="15" uuid="21d1afda-6484-44b3-9f22-d42ee7222da3"/>
+					<textFieldExpression><![CDATA[$F{Importe}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="700" y="0" width="100" height="15" uuid="53320f3a-e9fe-48a8-a1ba-1e8cd6dcde9a"/>
+					<textFieldExpression><![CDATA[$F{Cuenta de Referencia}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="802" height="1" uuid="e4f2a8ce-44df-437a-9228-ae5e23650417"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="843" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="b221ecdc-cfeb-4df2-b324-7772613701fc"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343" uuid="be9c68b8-d5c5-40c2-85d8-ac2633ace3b6"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="703" y="1" width="80" height="20" forecolor="#736343" uuid="2c9800ce-8b1a-4337-825c-cd04819a6466"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="93782fe2-69be-46c5-9921-70cadd826719"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
